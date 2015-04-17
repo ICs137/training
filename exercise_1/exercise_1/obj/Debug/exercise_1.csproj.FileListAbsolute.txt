@@ -1,0 +1,6 @@
+E:\LIFE\EPAM\projects\exercise_1\exercise_1\bin\Debug\exercise_1.exe.config
+E:\LIFE\EPAM\projects\exercise_1\exercise_1\bin\Debug\exercise_1.exe
+E:\LIFE\EPAM\projects\exercise_1\exercise_1\bin\Debug\exercise_1.pdb
+E:\LIFE\EPAM\projects\exercise_1\exercise_1\obj\Debug\exercise_1.csprojResolveAssemblyReference.cache
+E:\LIFE\EPAM\projects\exercise_1\exercise_1\obj\Debug\exercise_1.exe
+E:\LIFE\EPAM\projects\exercise_1\exercise_1\obj\Debug\exercise_1.pdb
