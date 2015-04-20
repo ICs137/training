@@ -1,0 +1,6 @@
+E:\LIFE\EPAM\projects\exercise_2\exercise_2\bin\Debug\exercise_2.exe.config
+E:\LIFE\EPAM\projects\exercise_2\exercise_2\bin\Debug\exercise_2.exe
+E:\LIFE\EPAM\projects\exercise_2\exercise_2\bin\Debug\exercise_2.pdb
+E:\LIFE\EPAM\projects\exercise_2\exercise_2\obj\Debug\exercise_2.csprojResolveAssemblyReference.cache
+E:\LIFE\EPAM\projects\exercise_2\exercise_2\obj\Debug\exercise_2.exe
+E:\LIFE\EPAM\projects\exercise_2\exercise_2\obj\Debug\exercise_2.pdb
