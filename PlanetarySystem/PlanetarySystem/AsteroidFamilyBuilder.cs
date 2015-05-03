@@ -29,17 +29,17 @@ namespace PlanetarySystem
         {
             AsteroidFamilyObj.Name = this.Name;
             AsteroidFamilyObj.OrbitCircumference = this.OrbitCircumference;
-            AsteroidFamilyObj.Mass = AsteroidFamilyObj.FullMass;
+          
         }
 
 
         void ConstructAsteroid()
                {
-            for (Int32 i = 0; rnd.Next(100, 1000) > i; i++)
+                
+            for (Int32 i = 0; rnd.Next(10, 200)  > i; i++)
             {
-
-                Asteroids.Add(new Asteroid(1)
-                { Name = "Asteroid N " + i,
+                AsteroidFamilyObj.Add(new Asteroid(1)
+                { Name = "Asteroid N "+ i,
                    Mass = rnd.Next(1, 2),
                    OrbitCircumference =this.OrbitCircumference* rnd.Next(8, 12)/10
                  

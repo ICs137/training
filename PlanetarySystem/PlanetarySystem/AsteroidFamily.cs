@@ -10,9 +10,9 @@ namespace PlanetarySystem
         private ICollection<Asteroid> Asteroids = new List<Asteroid>();
       
 
-        public  Int32 FullMass
+        public override  Int32 Mass
         {
-            get { return Asteroids.Aggregate(0, (seed, x) => seed + x.Mass); } //НЕ работает,загадка((
+            get { return Asteroids.Aggregate(0, (seed, x) => seed + x.Mass); } //НЕ работает,загадка((,    разгадана
              
         }
         public void Add(Asteroid item)
