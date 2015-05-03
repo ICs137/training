@@ -9,6 +9,9 @@ namespace PlanetarySystem
     {
 
        Double AtmospherePressure { get; }
+       Int32  SatelliteCount     { get; }
+       Double FullMass { get; }
+
 
     }
 }

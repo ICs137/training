@@ -7,7 +7,7 @@ namespace PlanetarySystem
 {
     public interface INuclearFusion
     {
-        bool   NuclearFusion { get;}
-        Double SolarLuminosity{get;}
+        bool   NuclearFusion  { get;}
+        Double SolarLuminosity {get;}
     }
 }

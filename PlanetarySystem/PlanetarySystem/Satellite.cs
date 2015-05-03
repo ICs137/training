@@ -7,12 +7,11 @@ namespace PlanetarySystem
 {
     public class Satellite : Asteroid, ISatellite
     {
-        public bool Artificially
-        { get; set; }
 
-        public Habitability Hab
+        public bool Artificially
         {
-            get { throw new NotImplementedException(); }
+            get;
+            set;
         }
     }
 }

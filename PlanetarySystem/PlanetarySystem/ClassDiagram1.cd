@@ -2,6 +2,9 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="PlanetarySystem.SpaceItem">
     <Position X="7.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAACAAAA=</HashCode>
       <FileName>SpaseItem.cs</FileName>
@@ -11,7 +14,7 @@
   <Class Name="PlanetarySystem.Planet">
     <Position X="4.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ACIgAAAAAAAAABAQAAAABAQEAAAACABAUAAAAABQIAA=</HashCode>
       <FileName>Planet.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -19,7 +22,7 @@
   <Class Name="PlanetarySystem.Asteroid">
     <Position X="7.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAgEAAAAAAACAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Asteroid.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -27,7 +30,7 @@
   <Class Name="PlanetarySystem.Star">
     <Position X="3" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Star.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -35,24 +38,40 @@
   <Class Name="PlanetarySystem.Satellite" Collapsed="true">
     <Position X="9.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Satellite.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="PlanetarySystem.AsteroidFamily">
-    <Position X="7.25" Y="4.75" Width="1.5" />
+    <Position X="7.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACIAAAAAAAAAABAQAAAABAQAAAAAAAABAAAAAADQIAA=</HashCode>
+      <HashCode>ACIAAAAAAAAAABAQAAAABAQAAAAAAABBAAAAAABQIAA=</HashCode>
       <FileName>AsteroidFamily.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="PlanetarySystem.PlanetarySystem">
-    <Position X="18.5" Y="0.5" Width="1.5" />
+    <Position X="9.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ACIAAAAAAAAAABAQAACQBAQAQAgAAAAAAAAAAABQIAA=</HashCode>
       <FileName>PlanetarySystem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PlanetarySystem.SpaceItemComparerByMass">
+    <Position X="9.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>SpaceItemComparerByMass.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PlanetarySystem.AsteroidFamilyBuilder">
+    <Position X="2.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAgEAAAAAAAAgAAAAAAAAAQAAIAAAAABAAAACAAAAAA=</HashCode>
+      <FileName>AsteroidFamilyBuilder.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="PlanetarySystem.INuclearFusion">
@@ -71,9 +90,6 @@
   </Interface>
   <Interface Name="PlanetarySystem.ISpaceItem">
     <Position X="13.5" Y="2" Width="2" />
-    <Compartments>
-      <Compartment Name="Properties" Collapsed="true" />
-    </Compartments>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAACAAAA=</HashCode>
       <FileName>ISpaceItem.cs</FileName>
@@ -88,8 +104,11 @@
   </Interface>
   <Interface Name="PlanetarySystem.IPlanet">
     <Position X="13.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAUAAAAAAAAAA=</HashCode>
       <FileName>Iplanet.cs</FileName>
     </TypeIdentifier>
   </Interface>

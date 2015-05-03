@@ -8,6 +8,6 @@ namespace PlanetarySystem
     public interface ISpaceItem
     {
         string Name { get;}
-        Double Mass { get;}
+        Int32 Mass { get;}
     }
 }

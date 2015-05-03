@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Asteroid.cs" />
     <Compile Include="AsteroidFamily.cs" />
+    <Compile Include="AsteroidFamilyBuilder.cs" />
+    <Compile Include="SpaceItemComparerByMass.cs" />
     <Compile Include="SpaseItem.cs" />
     <Compile Include="Habitability.cs" />
     <Compile Include="ISpaceItem.cs" />

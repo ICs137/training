@@ -9,8 +9,17 @@ namespace PlanetarySystem
     {
 
 
-       public string Name  { get; }
-       public Double Mass  { get; }
-        
+
+        public string Name
+        {
+            get;
+            set;
+        }
+
+        public virtual Int32 Mass
+        {
+            get;
+            set;
+        }
     }
 }

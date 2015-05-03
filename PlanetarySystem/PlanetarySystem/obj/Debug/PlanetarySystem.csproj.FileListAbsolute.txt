@@ -1,1 +1,6 @@
 E:\LIFE\EPAM\projects\PlanetarySystem\PlanetarySystem\bin\Debug\PlanetarySystem.exe.config
+E:\LIFE\EPAM\projects\PlanetarySystem\PlanetarySystem\obj\Debug\PlanetarySystem.csprojResolveAssemblyReference.cache
+E:\LIFE\EPAM\projects\PlanetarySystem\PlanetarySystem\bin\Debug\PlanetarySystem.exe
+E:\LIFE\EPAM\projects\PlanetarySystem\PlanetarySystem\bin\Debug\PlanetarySystem.pdb
+E:\LIFE\EPAM\projects\PlanetarySystem\PlanetarySystem\obj\Debug\PlanetarySystem.exe
+E:\LIFE\EPAM\projects\PlanetarySystem\PlanetarySystem\obj\Debug\PlanetarySystem.pdb

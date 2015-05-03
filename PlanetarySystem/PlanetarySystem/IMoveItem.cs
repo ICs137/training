@@ -8,8 +8,7 @@ namespace PlanetarySystem
     public interface IMoveItem : ISpaceItem
     {
         Habitability Hab { get; set; }
-        Double OrbitCircumference { get; }
-        string NameBarycenter { get; }
+        Double OrbitCircumference {get;}
     }
   
 

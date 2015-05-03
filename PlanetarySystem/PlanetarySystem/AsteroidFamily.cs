@@ -8,12 +8,12 @@ namespace PlanetarySystem
     public class AsteroidFamily : Asteroid, ICollection<Asteroid>
     {
         private ICollection<Asteroid> Asteroids = new List<Asteroid>();
-    
-        public Double Mass
+      
+
+        public  Int32 FullMass
         {
-            get { return Asteroids.Aggregate((Double)0, (seed, x) => seed + x.Mass); }
-            set { new InvalidOperationException("Deprecated"); }
-    
+            get { return Asteroids.Aggregate(0, (seed, x) => seed + x.Mass); } //НЕ работает,загадка((
+             
         }
         public void Add(Asteroid item)
         {
