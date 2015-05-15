@@ -80,9 +80,20 @@ namespace PlanetarySystem
                 }
             }
         }
+            public IEnumerable<ISpaceItem> Find (string Nam)
+        {
+
+            foreach (var i in spaceItems)
+            {
+                if (i.Name==Nam)
+                {
+                    yield return i;
+                }
+            }
 
 
 
+        }
 
 
 

@@ -33,16 +33,39 @@ namespace PlanetarySystem
         }
 
 
+        public Habitability HabitabilityRand()
+        {
+
+            Int32 j = rnd.Next(1, 10001);
+            if (j >9999)
+            {
+
+             return Habitability.intelligentForms;
+            }
+            else
+                if (j > 9990)
+                   return Habitability.complexForms;
+                else
+                    if (j >9900)
+                       return Habitability.simplestForms;
+                    else return Habitability.noLife;
+
+
+        }
+
+
+
         void ConstructAsteroid()
                {
-                
-            for (Int32 i = 0; rnd.Next(10, 200)  > i; i++)
+            Int32 J=   rnd.Next(100, 2000);
+
+            for (Int32 i = 0; J > i; i++)
             {
-                AsteroidFamilyObj.Add(new Asteroid(1)
+                AsteroidFamilyObj.Add(new Asteroid()
                 { Name = "Asteroid N "+ i,
-                   Mass = rnd.Next(1, 2),
-                   OrbitCircumference =this.OrbitCircumference* rnd.Next(8, 12)/10
-                 
+                   Mass = rnd.Next(1, 3),
+                   OrbitCircumference =this.OrbitCircumference* rnd.Next(90, 111)/100,
+                  Hab = HabitabilityRand()
                 });
 
                

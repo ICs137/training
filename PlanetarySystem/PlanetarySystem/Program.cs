@@ -13,7 +13,7 @@ namespace PlanetarySystem
             PlanetarySystem PlanetarySystemObj = new PlanetarySystem();
 
 
-            AsteroidFamilyBuilder asteroidFamilyBuilder = new AsteroidFamilyBuilder() { Name = "Field", OrbitCircumference = 1000 };
+            AsteroidFamilyBuilder asteroidFamilyBuilder = new AsteroidFamilyBuilder() { Name = "Field", OrbitCircumference = 10000 };
 
          PlanetarySystemObj.Add(  asteroidFamilyBuilder.Construct());
 
@@ -27,12 +27,14 @@ namespace PlanetarySystem
          planet.NuclearFusion=true;
          PlanetarySystemObj.Add(planet);
          PlanetarySystemObj.Add(new Asteroid() { Name = "Aster", Hab = Habitability.noLife, Mass = 1, OrbitCircumference = 333 });
-
+        
          PlanetarySystemObj.SortByMass();
    
          foreach (var i in PlanetarySystemObj)
 
+
              Console.WriteLine("имя = {0 } , масса = {1}",i.Name, i.Mass );
+
 
 
 

@@ -22,7 +22,7 @@
   <Class Name="PlanetarySystem.Asteroid">
     <Position X="7.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgEAAAAAAACAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAgEAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Asteroid.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -46,7 +46,7 @@
   <Class Name="PlanetarySystem.AsteroidFamily">
     <Position X="7.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACIAAAAAAAAAABAQAAAABAQAAAAAAABBAAAAAABQIAA=</HashCode>
+      <HashCode>ACIAAAAAAAAAABAQAAAABAQAAAAAAAABAAAAAADQIAA=</HashCode>
       <FileName>AsteroidFamily.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -54,7 +54,7 @@
   <Class Name="PlanetarySystem.PlanetarySystem">
     <Position X="9.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACIAAAAAAAAAABAQAACQBAQAQAgAAAAAAAAAAABQIAA=</HashCode>
+      <HashCode>ACIAAAAAAAAAABAQAACQBAQAQAgIAAAAAAAAAABQIAA=</HashCode>
       <FileName>PlanetarySystem.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -70,7 +70,7 @@
   <Class Name="PlanetarySystem.AsteroidFamilyBuilder">
     <Position X="2.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAgEAAAAAAAAgAAAAAAAAAQAAIAAAAABAAAACAAAAAA=</HashCode>
+      <HashCode>CAgEAAAAAAAAgAAAAAgAAAQAAIAAAAABAAAACAAAAAA=</HashCode>
       <FileName>AsteroidFamilyBuilder.cs</FileName>
     </TypeIdentifier>
   </Class>
