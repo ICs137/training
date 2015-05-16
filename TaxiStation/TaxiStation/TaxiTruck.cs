@@ -7,5 +7,11 @@ namespace TaxiStation
 {
     public class TaxiTruck:Car,Icargo
     {
+        public float CargoMaxMass
+        { get; set; }
+
+        public float CargoMaxVolume
+        { get; set; }
+
     }
 }

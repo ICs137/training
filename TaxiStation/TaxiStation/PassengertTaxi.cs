@@ -7,5 +7,8 @@ namespace TaxiStation
 {
     public class PassengertTaxi:Car,Ipassengert
     {
+        public short CapacityPassengert
+        { get; set; }
+
     }
 }

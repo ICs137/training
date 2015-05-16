@@ -12,6 +12,6 @@ namespace TaxiStation
         int Price { get; }
         int FuelConsumption { get; }
         int MaxSpeed { get; }
-
+        DateTime CreationDate { get; }
     }
 }
