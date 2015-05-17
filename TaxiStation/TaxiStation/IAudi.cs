@@ -8,7 +8,7 @@ namespace TaxiStation
     public interface IAudi:Icar
     {
 
-        AudiList NameLine { get; }
+        AudiList ModelName { get;  }
 
      }
 }

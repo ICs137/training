@@ -7,5 +7,6 @@ namespace TaxiStation
 {
     public enum VolkswagenList
     {
+        Polo, Jetta, Passat, Т5
     }
 }

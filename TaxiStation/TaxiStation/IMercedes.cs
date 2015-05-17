@@ -8,7 +8,7 @@ namespace TaxiStation
     public interface IMercedes:Icar
     {
       
-      MercedesList NameLine { get; }
+      MercedesList ModelName { get; }
 
     }
 }

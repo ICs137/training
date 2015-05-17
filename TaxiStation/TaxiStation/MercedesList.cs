@@ -7,5 +7,6 @@ namespace TaxiStation
 {
     public enum MercedesList
     {
+        W222, W245, W246, w906
     }
 }

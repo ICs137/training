@@ -12,15 +12,13 @@ namespace TaxiStation
 
          static CarBrands carBrand;
 
-         public CarBrands CarBrand { get { return carBrand; } }
+         public virtual CarBrands CarBrand { get { return carBrand; } }
 
-        public float Mass
-        { get; set; }
 
         public int Price
         { get; set; }
 
-        public int FuelConsumption
+        public Double FuelConsumption
         { get; set; }
 
         public int MaxSpeed
@@ -31,5 +29,10 @@ namespace TaxiStation
 
         public Int16 CapacityPassengert
         { get; set; }
+
+        public virtual void GetInfoCar()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

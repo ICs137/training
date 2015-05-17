@@ -9,7 +9,7 @@ namespace TaxiStation
     {
 
       
-       VolkswagenList NameLine { get; }
+       VolkswagenList ModelName { get; }
 
 
     }

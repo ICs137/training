@@ -62,11 +62,14 @@ namespace TaxiStation
         Dictionary<String, Func<Icar, object>> sortDict =
                                       new Dictionary<string, Func<Icar, object>>()
         {
-            {"maxSpeed", x => x. MaxSpeed},
-            
+            {"maxspeed", x => x.MaxSpeed},
             {"fuelconsumption", x => x.FuelConsumption},
             {"manufactureddate", x => x.ManufacturedDate},
-            {"mass", x => x.Mass},
+            {"price",x => x.Price},
+            {"capacitypassengert",x => x.CapacityPassengert},
+            {"carbrand",  x => x.CarBrand}
+
+
             
         };
 
@@ -82,12 +85,28 @@ namespace TaxiStation
             }
             else
             {
-               // cars = cars.OrderBy(x => x.ModelName).ToList();
+               cars = cars.OrderBy(x => x.CarBrand).ToList();
             }
-
 
         }
 
+        public int GetFullPrice()
+        {
+            return cars.Aggregate(0, (seed, x) => seed + x.Price);
+        }
+
+        public IEnumerable<Icar> GetCarBySpeed(int minSpeed, int maxSpeed)
+        {
+
+
+            foreach (var i in cars)
+            {
+                if (i.MaxSpeed >= minSpeed && i.MaxSpeed <= maxSpeed)
+                {
+                    yield return i;
+                }
+            }
+        }
 
 
     }

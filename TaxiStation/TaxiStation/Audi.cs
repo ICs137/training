@@ -8,9 +8,20 @@ namespace TaxiStation
     public class Audi:Car,IAudi
     {
 
-    static CarBrands carbrand = CarBrands.Audi ;
+    static CarBrands carBrand = CarBrands.Audi ;
 
-    public AudiList NameLine
-    { get; set; }
+    public override CarBrands CarBrand
+    {
+        get
+        {
+            return carBrand;
+        }
+    }
+
+    public override void GetInfoCar()
+    { Console.WriteLine("марка - {0,10}, модель-{1, 8}, максимальная скорость ={2,4},  расход топлива ={3}", this.CarBrand, this.ModelName, this.MaxSpeed, this.FuelConsumption); }
+
+    public AudiList ModelName
+    { get;  set; }
     }
 }
