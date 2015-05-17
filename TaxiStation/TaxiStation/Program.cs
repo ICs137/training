@@ -10,6 +10,17 @@ namespace TaxiStation
     {
         static void Main(string[] args)
         {
+            TaxiStation TaxiStationExample = new TaxiStation();
+            TaxiStationExample.Add(new PassengertTaxi(){})
+
+
+
+
+
+
+
+
+
         }
     }
 }

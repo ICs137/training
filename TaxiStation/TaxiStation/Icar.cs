@@ -7,11 +7,12 @@ namespace TaxiStation
 {
     public interface Icar
     {
-        string ModelName { get; }
+        CarBrands CarBrand { get; }
         float Mass { get; }
         int Price { get; }
         int FuelConsumption { get; }
         int MaxSpeed { get; }
-        DateTime CreationDate { get; }
+        DateTime ManufacturedDate { get; }
+        Int16 CapacityPassengert { get; }
     }
 }

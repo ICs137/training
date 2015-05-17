@@ -5,9 +5,12 @@ using System.Text;
 
 namespace TaxiStation
 {
-    public interface Icargo:Icar
+    public interface IVolkswagen:Icar
     {
-        float CargoMaxMass { get; }
-        float CargoMaxVolume { get; }
+
+      
+       VolkswagenList NameLine { get; }
+
+
     }
 }

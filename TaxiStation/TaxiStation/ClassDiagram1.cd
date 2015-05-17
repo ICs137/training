@@ -3,79 +3,98 @@
   <Class Name="TaxiStation.TaxiStation">
     <Position X="12.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACIAAAAAAAAAAhAQAAAABAQAAAAAAAAAAAAAAABQIAA=</HashCode>
+      <HashCode>ACIAAAAAAAAAAhAQCAAABAQAAAAAAAgAAAAAAABQIAA=</HashCode>
       <FileName>TaxiStation.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="TaxiStation.Car">
-    <Position X="7.5" Y="1.25" Width="1.5" />
+    <Position X="7" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAQAAAAAAAAAEAAAAAAAAAAAAAQAAAAiAAAA=</HashCode>
+      <HashCode>AAAAAAAAAQAAAAAAAAAEAAAAAAAQAAAAkQAAAICAAAA=</HashCode>
       <FileName>Car.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="TaxiStation.TaxiTruck">
-    <Position X="5" Y="4" Width="1.5" />
-    <InheritanceLine Type="TaxiStation.Car" ManuallyRouted="true">
-      <Path>
-        <Point X="8.25" Y="3.315" />
-        <Point X="8.25" Y="3.571" />
-        <Point X="5.75" Y="3.571" />
-        <Point X="5.75" Y="4" />
-      </Path>
-    </InheritanceLine>
+  <Class Name="TaxiStation.Audi">
+    <Position X="5.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
-      <FileName>TaxiTruck.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Audi.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="TaxiStation.PassengertTaxi">
-    <Position X="10.25" Y="4.25" Width="1.5" />
-    <InheritanceLine Type="TaxiStation.Car" ManuallyRouted="true">
-      <Path>
-        <Point X="8.25" Y="3.315" />
-        <Point X="8.25" Y="3.56" />
-        <Point X="11" Y="3.56" />
-        <Point X="11" Y="4.25" />
-      </Path>
-    </InheritanceLine>
+  <Class Name="TaxiStation.Mercedes">
+    <Position X="7.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
-      <FileName>PassengertTaxi.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mercedes.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="TaxiStation.CargoPassengerTaxi">
-    <Position X="7.5" Y="4.25" Width="1.5" />
+  <Class Name="TaxiStation.Volkswagen">
+    <Position X="9.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAAIAAAAA=</HashCode>
-      <FileName>CargoPassengerTaxi.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Volkswagen.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="TaxiStation.Ipassengert">
-    <Position X="4.75" Y="6" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
-      <FileName>Ipassengert.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="TaxiStation.Icar">
-    <Position X="2.75" Y="5.5" Width="1.5" />
+    <Position X="2.25" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAQAAAAAAAAAEAAAAAAAAAAAAAQAAAAiAAAA=</HashCode>
+      <HashCode>AAAAAAAAAQAAAAAAAAAEAAAAAAAQAAAAgQAAAICAAAA=</HashCode>
       <FileName>Icar.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="TaxiStation.Icargo">
-    <Position X="0.5" Y="6" Width="1.5" />
+  <Interface Name="TaxiStation.IAudi">
+    <Position X="0.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
-      <FileName>Icargo.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IAudi.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="TaxiStation.IMercedes">
+    <Position X="2.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IMercedes.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TaxiStation.IVolkswagen">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IVolkswagen.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="TaxiStation.CarBrands">
+    <Position X="9.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAEAgAAAA=</HashCode>
+      <FileName>CarBrands.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TaxiStation.AudiList">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AudiList.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TaxiStation.MercedesList">
+    <Position X="2.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MercedesList.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TaxiStation.VolkswagenList">
+    <Position X="4" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VolkswagenList.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

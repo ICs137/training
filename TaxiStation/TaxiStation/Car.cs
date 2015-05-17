@@ -7,9 +7,12 @@ namespace TaxiStation
 {
     public abstract class Car : Icar
     {
-        public string ModelName
-        { get;set; }
 
+
+
+         static CarBrands carBrand;
+
+         public CarBrands CarBrand { get { return carBrand; } }
 
         public float Mass
         { get; set; }
@@ -23,6 +26,10 @@ namespace TaxiStation
         public int MaxSpeed
         { get; set; }
 
-        public DateTime CreationDate { get; set; }
+        public DateTime ManufacturedDate
+        { get; set; }
+
+        public Int16 CapacityPassengert
+        { get; set; }
     }
 }

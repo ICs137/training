@@ -5,9 +5,7 @@ using System.Text;
 
 namespace TaxiStation
 {
-    public interface Ipassengert:Icar
+    public enum AudiList
     {
-
-        Int16 CapacityPassengert { get; }
     }
 }

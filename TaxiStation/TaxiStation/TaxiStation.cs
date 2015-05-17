@@ -11,7 +11,7 @@ namespace TaxiStation
         private ICollection<Icar> cars = new List<Icar>();
 
 
-
+        #region Collection
         public void Add(Icar item)
         {
             cars.Add(item);
@@ -54,7 +54,41 @@ namespace TaxiStation
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            t return this.GetEnumerator();
+            return this.GetEnumerator();
         }
+        #endregion
+
+
+        Dictionary<String, Func<Icar, object>> sortDict =
+                                      new Dictionary<string, Func<Icar, object>>()
+        {
+            {"maxSpeed", x => x. MaxSpeed},
+            
+            {"fuelconsumption", x => x.FuelConsumption},
+            {"manufactureddate", x => x.ManufacturedDate},
+            {"mass", x => x.Mass},
+            
+        };
+
+        public void SortWithDict(string a)
+        {
+
+            a = a.ToLower();
+            a = new string(a.ToCharArray().Where(x => !Char.IsWhiteSpace(x)).ToArray());
+
+            if (sortDict.ContainsKey(a))
+            {
+                cars = cars.OrderBy(sortDict[a]).ToList();
+            }
+            else
+            {
+               // cars = cars.OrderBy(x => x.ModelName).ToList();
+            }
+
+
+        }
+
+
+
     }
 }

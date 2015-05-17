@@ -5,10 +5,12 @@ using System.Text;
 
 namespace TaxiStation
 {
-    public class PassengertTaxi:Car,Ipassengert
+    public class Audi:Car,IAudi
     {
-        public short CapacityPassengert
-        { get; set; }
 
+    static CarBrands carbrand = CarBrands.Audi ;
+
+    public AudiList NameLine
+    { get; set; }
     }
 }
