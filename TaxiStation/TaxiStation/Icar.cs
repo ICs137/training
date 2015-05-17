@@ -13,7 +13,7 @@ namespace TaxiStation
         int MaxSpeed { get; }
         DateTime ManufacturedDate { get; }
         Int16 CapacityPassengert { get; }
-        void GetInfoCar() { }
+        void GetInfoCar();
 
     }
 }

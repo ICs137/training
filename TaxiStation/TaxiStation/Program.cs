@@ -29,6 +29,7 @@ namespace TaxiStation
 
 
             TaxiStationExample.Add(new Audi() { ModelName = AudiList.A8, FuelConsumption = 10.5, MaxSpeed =250, Price = 90000, CapacityPassengert = 4, ManufacturedDate = new DateTime(2014, 09, 01), });
+            Console.WriteLine();
 
             Console.WriteLine("полная стоимость авто = {0} ", TaxiStationExample.GetFullPrice());
 
@@ -37,23 +38,24 @@ namespace TaxiStation
 
 
 
-
+            Console.WriteLine();
 
 
             foreach (var i in TaxiStationExample )
             {
 
-                i.GetInfo();
-
+                i.GetInfoCar();
 
             }
+
+
 
             Console.WriteLine();
 
             foreach (var i in TaxiStationExample.GetCarBySpeed(200,280))
             {
 
-                i.GetInfo();
+                i.GetInfoCar();
 
 
             }

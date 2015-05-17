@@ -32,7 +32,7 @@ namespace TaxiStation
 
         public virtual void GetInfoCar()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("марка - {0,10}, максимальная скорость ={2,4},  расход ={3}", this.CarBrand,  this.MaxSpeed, this.FuelConsumption); ;
         }
     }
 }
