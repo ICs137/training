@@ -9,7 +9,7 @@ namespace Concordance
   public  class Words
 
   {
-        string wordsValue;
+        
         public string WorrdsValue {get;set;}
 
         int[] wordCount;
@@ -45,8 +45,7 @@ namespace Concordance
                         }
                         else
                             if (indexWordCount == 0)
-
-                                wordCount[indexWordCount] = 0;
+                            { wordCount[indexWordCount] = 0; }
                 
                     }
         

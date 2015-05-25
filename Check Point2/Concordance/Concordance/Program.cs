@@ -15,7 +15,10 @@ namespace Concordance
 
             obj.ReadText();
             obj.CreateConcordance();
+            obj.GetOutputList();
             obj.ToConsole();
+            obj.ToFile();
+
 
         }
     }

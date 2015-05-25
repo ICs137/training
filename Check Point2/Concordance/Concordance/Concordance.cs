@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Collections;
 
 namespace Concordance
 {
@@ -12,28 +13,34 @@ namespace Concordance
 
         const int pageSize = 40;   // number of lines per page
 
-        char[] punctuationSeparators = new char[] { ' ', ',', '.', '!', '?', ':', ';', '—', '(', ')' };
+        char[] punctuationSeparators = new char[] { ' ', ',', '.', '!', '?', ':', ';', '(', ')', '—','"'};
 
         IDictionary<string, Words> wordsCountDict = new Dictionary<string, Words>() ;
 
 
         FileManager objFile = new FileManager();
 
+       
+        ICollection<string> outputList = new List<string>();
 
+        public ICollection<string> OutputList { get { return outputList; } }
+
+       
         ICollection<string> lines = new List<string>();
 
         public ICollection<string> Lines { get { return lines; } }
 
         public int LinesCount {get {return  lines.Count;}}
 
+
    //------------------------------------------------------------------------------------------------------------------------
        
-       public void ReadText() //read file and parse text into lines
+       public void ReadText(string filePath) //read file and parse text into lines
         {
             
                 try
                 {
-                   using (StreamReader streamreader = new StreamReader(objFile.FilePath))
+                    using (StreamReader streamreader = new StreamReader(filePath, Encoding.Default))
                      {
                             while (streamreader.Peek() > -1)
                               {
@@ -48,7 +55,13 @@ namespace Concordance
 
        }
 
-       
+       public void ReadText() //read file and parse text into lines
+       {
+
+           ReadText(objFile.FilePath);
+
+       }
+      
   //------------------------------------------------------------------------------------------------------------------------
         public void CreateConcordance()
         {
@@ -80,41 +93,79 @@ namespace Concordance
         }
 
   //------------------------------------------------------------------------------------------------------------------------
-       public void ToConsole()
+       public void GetOutputList()
         {
-          
-               Console.WriteLine("the file {0} contains",objFile.FileName);
+               string str = string.Empty;
+               str = String.Concat(str, "\n");
 
-           foreach (var sortdict in wordsCountDict.OrderBy(x => x.Key))
-           {
-               
-              Console.Write( sortdict.Key);
-              for (int i = 0; i < sortdict.Value.WordCount; i++)
-                  {
-                      if (i == 0)
+               outputList.Add(String.Format("the file {0} contains{1}",objFile.FileName,str));
+              
 
-                          { 
-                              Console.Write(" quantity = {0}  lines ", sortdict.Value[i]);
-                          }
-                      else 
+               foreach (var alphabeticalGroup in wordsCountDict.OrderBy(x => x.Key).GroupBy(x => x.Key[0]))
+                   {
+
+                     string  capitalLetter= alphabeticalGroup.Key.ToString().ToUpper();
+
+                     outputList.Add(String.Format(" {0} -={1}=-",str, capitalLetter[0]));
+                    
+
+                     foreach (var  group in alphabeticalGroup )
+
                           {
-                              if ( sortdict.Value[i]!=0 )
-                              {
-                                  Console.Write("  {0}", i % pageSize);
+                            
+                               string lineNuber= string.Empty;
 
-                              }
-                                    
+                               for (int i = 0; i <  group.Value.WordCount; i++)
+                               {
+
+                                   if (i != 0)
+                                     {
+                                          if ( group.Value[i]!=0 )
+
+                                          {
+                                              lineNuber = String.Concat(lineNuber, String.Format("{0}", i.ToString().PadLeft(3)));
+                                         
+                                          }
+                                                
+                                      }
+
+                               }
+                               outputList.Add(String.Format("  {0} total ={1}:{2} ", group.Key.PadRight(21, '.'), group.Value[0].ToString().PadLeft(3), lineNuber));
+                               
+                             
                           }
+                                           
 
-                  }
+                   }
 
-              Console.WriteLine();
-              Console.WriteLine();
+            }
+   //------------------------------------------------------------------------------------------------------------------------
+       
+
+       public void ToConsole() 
+
+           {
+
+                foreach (string  str in outputList  )
+                { Console.WriteLine(str); }
 
            }
 
+   //------------------------------------------------------------------------------------------------------------------------
 
-        }
+       public void ToFile()
+
+
+           {
+
+                objFile.ToFile(OutputList);
+
+           }
+      
+
+
+
+
 
        
 
