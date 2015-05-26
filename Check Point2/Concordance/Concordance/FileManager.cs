@@ -9,7 +9,7 @@ namespace Concordance
 {
         class FileManager
     {
-       public string SaveFilePath { get { return "../../"+ "Concord " + FileName; } }
+       public string SaveFilePath { get { return "../../"+ "Concord_" + FileName; } }
        public string FileName { get; set; }
 
        public string FilePath { get { return "../../" + FileName; } }
@@ -43,9 +43,9 @@ namespace Concordance
                Console.WriteLine(String.Concat("file is  recorded" , SaveFilePath ));
 
            }
-           catch (Exception ex)
+           catch (Exception except)
            {
-               Console.WriteLine(ex.Message);
+               Console.WriteLine(except.Message);
            }
        }
 

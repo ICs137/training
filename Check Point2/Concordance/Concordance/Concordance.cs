@@ -48,9 +48,9 @@ namespace Concordance
                               }
                      }
                 }
-                catch (Exception Except)
+                catch (Exception except)
                 {
-                    Console.WriteLine("The process failed: {0}", Except.Message);
+                    Console.WriteLine("The process failed: {0}", except.Message);
                 }
 
        }
@@ -66,7 +66,7 @@ namespace Concordance
         public void CreateConcordance()
         {
 
-            int lineNumber = 1;
+            int lineNumber = Lines.Count();
             foreach (var line in Lines)
                {
                     string[] onlyWords = line.Split(punctuationSeparators, StringSplitOptions.RemoveEmptyEntries);
@@ -78,7 +78,7 @@ namespace Concordance
 
                         if (!wordsCountDict.ContainsKey(word))
                              {
-                                 Words itemWords = new Words(LinesCount+1) { WorrdsValue = word };
+                                 Words itemWords = new Words(lineNumber + 1) { WorrdsValue = word };
 
                                 itemWords[lineNumber] = 1;
                                 wordsCountDict.Add(word,  itemWords);
@@ -88,7 +88,7 @@ namespace Concordance
                                  wordsCountDict[word][lineNumber]++;
                              }
                    }
-                    lineNumber++;
+                    lineNumber--;
                 }
         }
 
@@ -104,33 +104,31 @@ namespace Concordance
                foreach (var alphabeticalGroup in wordsCountDict.OrderBy(x => x.Key).GroupBy(x => x.Key[0]))
                    {
 
-                     string  capitalLetter= alphabeticalGroup.Key.ToString().ToUpper();
-
-                     outputList.Add(String.Format(" {0} -={1}=-",str, capitalLetter[0]));
+                          outputList.Add(String.Format(" {0} -={1}=-", str, alphabeticalGroup.Key.ToString().ToUpper()));
                     
 
-                     foreach (var  group in alphabeticalGroup )
+                     foreach (var  iteamGroup in alphabeticalGroup )
 
                           {
                             
                                string lineNuber= string.Empty;
 
-                               for (int i = 0; i <  group.Value.WordCount; i++)
+                               for (int i = 0; i <  iteamGroup.Value.WordCount; i++)
                                {
 
                                    if (i != 0)
                                      {
-                                          if ( group.Value[i]!=0 )
+                                          if ( iteamGroup.Value[i]!=0 )
 
                                           {
-                                              lineNuber = String.Concat(lineNuber, String.Format("{0}", i.ToString().PadLeft(3)));
+                                              lineNuber = String.Concat(lineNuber, String.Format(" {0}", i));
                                          
                                           }
                                                 
                                       }
 
                                }
-                               outputList.Add(String.Format("  {0} total ={1}:{2} ", group.Key.PadRight(21, '.'), group.Value[0].ToString().PadLeft(3), lineNuber));
+                               outputList.Add(String.Format("  {0} total ={1}:{2} ", iteamGroup.Key.PadRight(21, '.'), iteamGroup.Value[0].ToString().PadLeft(3), lineNuber));
                                
                              
                           }
