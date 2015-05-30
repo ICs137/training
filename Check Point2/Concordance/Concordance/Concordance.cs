@@ -11,9 +11,10 @@ namespace Concordance
    public class Concordance
     {
 
-        const int pageSize = 40;   // number of lines per page
+        const int pageSize =42;   // number of lines per page
 
-        char[] punctuationSeparators = new char[] { ' ', ',', '.', '!', '?', ':', ';', '(', ')', '—','"'};
+       // char[] punctuationSeparators = new char[] { ' ', ',', '.', '!', '?', ':', ';', '(', ')', '—','"'};
+        string[] punctuationSeparators = new string[] { " '", ",", ".", "!", "?","\"", ":", ";", "(", ")", "—", "' "," " };
 
         IDictionary<string, Words> wordsCountDict = new Dictionary<string, Words>() ;
 
@@ -42,7 +43,7 @@ namespace Concordance
                 {
                     using (StreamReader streamreader = new StreamReader(filePath, Encoding.Default))
                      {
-                            while (streamreader.Peek() > -1)
+                            while (streamreader.Peek() >=0)
                               {
                                  lines.Add(streamreader.ReadLine().ToLower());
                               }
@@ -67,7 +68,7 @@ namespace Concordance
         {
 
             int lineNumber = Lines.Count();
-            foreach (var line in Lines)
+            foreach (var line in Lines.Reverse())
                {
                     string[] onlyWords = line.Split(punctuationSeparators, StringSplitOptions.RemoveEmptyEntries);
 
@@ -81,6 +82,7 @@ namespace Concordance
                                  Words itemWords = new Words(lineNumber + 1) { WorrdsValue = word };
 
                                 itemWords[lineNumber] = 1;
+                              
                                 wordsCountDict.Add(word,  itemWords);
                              }
                         else
@@ -98,6 +100,8 @@ namespace Concordance
                string str = string.Empty;
                str = String.Concat(str, "\n");
 
+               int textSize = lines.Count;
+
                outputList.Add(String.Format("the file {0} contains{1}",objFile.FileName,str));
               
 
@@ -110,26 +114,7 @@ namespace Concordance
                      foreach (var  iteamGroup in alphabeticalGroup )
 
                           {
-                            
-                               string lineNuber= string.Empty;
-
-                               for (int i = 0; i <  iteamGroup.Value.WordCount; i++)
-                               {
-
-                                   if (i != 0)
-                                     {
-                                          if ( iteamGroup.Value[i]!=0 )
-
-                                          {
-                                              lineNuber = String.Concat(lineNuber, String.Format(" {0}", i));
-                                         
-                                          }
-                                                
-                                      }
-
-                               }
-                               outputList.Add(String.Format("  {0} total ={1}:{2} ", iteamGroup.Key.PadRight(21, '.'), iteamGroup.Value[0].ToString().PadLeft(3), lineNuber));
-                               
+                              outputList.Add(iteamGroup.Value.WordInfo(pageSize,textSize));
                              
                           }
                                            
@@ -162,10 +147,7 @@ namespace Concordance
       
 
 
-
-
-
-       
+             
 
     }
 }

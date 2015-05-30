@@ -30,7 +30,7 @@ namespace Concordance
        {
            try
            {
-               using (StreamWriter swriter = new StreamWriter( SaveFilePath,false, Encoding.Default))
+               using (StreamWriter swriter = new StreamWriter(SaveFilePath, false, Encoding.UTF8))
                {
                    foreach (var item in outputList)
                    {
@@ -49,8 +49,7 @@ namespace Concordance
            }
        }
 
-
-
+ 
 
 
     }
