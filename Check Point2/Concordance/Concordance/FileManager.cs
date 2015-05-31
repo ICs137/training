@@ -28,24 +28,26 @@ namespace Concordance
 
        public void ToFile(ICollection<string> outputList)
        {
-           try
+           if (outputList.Count > 1)
            {
-               using (StreamWriter swriter = new StreamWriter(SaveFilePath, false, Encoding.UTF8))
-               {
-                   foreach (var item in outputList)
+                   try
                    {
-                       swriter.WriteLine(item);
+                       using (StreamWriter swriter = new StreamWriter(SaveFilePath, false, Encoding.UTF8))
+                       {
+                           foreach (var item in outputList)
+                           {
+                               swriter.WriteLine(item);
+                           }
+
+                       }
+
+                       Console.WriteLine(String.Concat("file is  recorded", SaveFilePath));
+
                    }
-
-
-               }
-
-               Console.WriteLine(String.Concat("file is  recorded" , SaveFilePath ));
-
-           }
-           catch (Exception except)
-           {
-               Console.WriteLine(except.Message);
+                   catch (Exception except)
+                   {
+                       Console.WriteLine(except.Message);
+                   }
            }
        }
 

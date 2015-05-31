@@ -16,13 +16,11 @@ namespace Concordance
 
             obj.ReadText();
             obj.CreateConcordance();
-            var timer = Stopwatch.StartNew();
             obj.GetOutputList();
-            timer.Stop();
-            Console.WriteLine("Выполнение метода заняло {0} мс", timer.ElapsedMilliseconds);
-           // obj.ToConsole();
+            // obj.ToConsole();
             obj.ToFile();
-     
+           
+           
 
         }
     }
