@@ -13,7 +13,7 @@ namespace Concordance
 
         const int pageSize =42;   // number of lines per page
 
-       // char[] punctuationSeparators = new char[] { ' ', ',', '.', '!', '?', ':', ';', '(', ')', '—','"'};
+      
         string[] punctuationSeparators = new string[] { " '", ",", ".", "!", "?","\"", ":", ";", "(", ")", "—", "' "," " };
 
         IDictionary<string, Words> wordsCountDict = new Dictionary<string, Words>() ;
@@ -62,8 +62,42 @@ namespace Concordance
            ReadText(objFile.FilePath);
 
        }
-      
-  //------------------------------------------------------------------------------------------------------------------------
+
+
+       public void CreateConcordance()
+       {
+
+           int lineNumber = 1;
+           foreach (var line in Lines)
+           {
+               string[] onlyWords = line.Split(punctuationSeparators, StringSplitOptions.RemoveEmptyEntries);
+
+               foreach (var word in onlyWords)
+               {
+                   if (!Char.IsLetter(word[0]))
+                   { continue; }
+
+                   if (!wordsCountDict.ContainsKey(word))
+                   {
+                    
+                       wordsCountDict.Add(word, new Words(lineNumber) { WorrdsValue = word });
+                       
+                   }
+                   else
+                   {
+                       wordsCountDict[word].WordCount.Add(lineNumber);
+                   }
+               }
+               lineNumber++;
+           }
+       }
+
+
+
+
+
+       /* ver. 1
+       //------------------------------------------------------------------------------------------------------------------------
         public void CreateConcordance()
         {
 
@@ -93,6 +127,7 @@ namespace Concordance
                     lineNumber--;
                 }
         }
+       */
 
   //------------------------------------------------------------------------------------------------------------------------
        public void GetOutputList()
@@ -108,7 +143,7 @@ namespace Concordance
                foreach (var alphabeticalGroup in wordsCountDict.OrderBy(x => x.Key).GroupBy(x => x.Key[0]))
                    {
 
-                          outputList.Add(String.Format(" {0} -={1}=-", str, alphabeticalGroup.Key.ToString().ToUpper()));
+                          outputList.Add(String.Format(" {0}       -={1}=-", str, alphabeticalGroup.Key.ToString().ToUpper()));
                     
 
                      foreach (var  iteamGroup in alphabeticalGroup )

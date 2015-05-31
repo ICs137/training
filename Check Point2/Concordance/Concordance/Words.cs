@@ -10,45 +10,118 @@ namespace Concordance
 
   {
         
-        public string WorrdsValue {get;set;}
+            public string WorrdsValue {get;set;}
 
-        Int16[] wordCount;
 
-        public int WordCount { get { return wordCount.Length; } }
+            private ICollection<int> wordCount;
 
-        public Words(int size)
+            public ICollection<int> WordCount
             {
-                wordCount = new Int16[size];
+                get { return wordCount; }
+                set { wordCount = value; }
             }
 
-
-
-        public Int16 this[int indexWordCount] 
-            { 
             
-                get
-                    {
-                      
-                            return wordCount[indexWordCount];
-                   
-                    } 
-            
-                set 
-                    {
-                        if (indexWordCount > 0)
-                        {
-                            wordCount[indexWordCount] = value;
-
-                            wordCount[0]++; // zero point to store information about the number of words in the text 
-
-                        }
-                                        
-                    }
         
+            public void SetWordCount( int value )
+                    {
+
+                        wordCount.Add(value);
+
+                    }
+            
+            public Words(int lineNumer)
+                {
+                    wordCount = new List<int>();
+                    wordCount.Add(lineNumer);
+
+                }
+           
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+            public string WordInfo(int pageSize, int textSize)
+            {
+
+                string wordInfo = string.Empty;
+
+                wordInfo = String.Format("\r\n  {0} total = {1} ", WorrdsValue.PadRight(18, '.'), WordCount.Count);
+         
+                int  indexPage;
+                int tempIndexPage=0;
+               
+
+                foreach (int  line in WordCount.Distinct() )
+                     {
+                             indexPage=tempIndexPage;
+                             tempIndexPage = line / pageSize;
+
+                             if (line % pageSize > 0)
+                                 {
+                                     tempIndexPage++;
+                                 }
+                       
+                             if (indexPage!=tempIndexPage)
+                                 {
+                                     wordInfo = String.Concat(wordInfo, String.Format("\r\n    Page  {0} : ", tempIndexPage));
+                                 }
+
+
+                             if (line % pageSize != 0)
+                                 { 
+
+                                    wordInfo = String.Concat(wordInfo, String.Format("  {0}", line% pageSize));
+
+                                 }
+                             else
+                                 {
+                                    wordInfo = String.Concat(wordInfo, String.Format("  {0}",pageSize));
+                                 }
+
+                    }
+
+                return wordInfo;
+
             }
 
-        //-------------------------------- The method generates information about the word-------------------------------------------
-        public string WordInfo(int pageSize, int textSize)
+
+
+       /* ver 1
+            Int16[] wordCount;
+
+            public int WordCount { get { return wordCount.Length; } }
+
+            public Words(int size)
+                {
+                    wordCount = new Int16[size];
+                }
+
+
+
+            public Int16 this[int indexWordCount] 
+                { 
+            
+                    get
+                        {
+                      
+                                return wordCount[indexWordCount];
+                   
+                        } 
+            
+                    set 
+                        {
+                            if (indexWordCount > 0)
+                            {
+                                wordCount[indexWordCount] = value;
+
+                                wordCount[0]++; // zero point contains information about the number of words in the text 
+
+                            }
+                                        
+                        }
+        
+                }
+
+            //-------------------------------- The method generates information about the word-------------------------------------------
+            public string WordInfo(int pageSize, int textSize)
         {
             
           string wordInfo= string.Empty;
@@ -108,6 +181,6 @@ namespace Concordance
           return wordInfo;
 
         }
-     
+      */
     }
 }
