@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TelephoneExchange
 {
-    public class Terminal
+    public class Terminal:ITerminal
     {
         public TelephoneNumber MyPhoneNumber { get;  private set; }
         public Terminal(TelephoneNumber number)
@@ -13,8 +13,8 @@ namespace TelephoneExchange
               MyPhoneNumber = number;
           }
         public TerminalState TerminalStatus { get; private set; }
-        public event EventHandler<CallingEventArgs> StartCalling;
 
+        public event EventHandler<CallingEventArgs> StartCalling;
         protected virtual void OnStartCalling(TelephoneNumber targetNumber)
             {
                 CallingEventArgs e = new CallingEventArgs(targetNumber);
@@ -24,7 +24,6 @@ namespace TelephoneExchange
                 }
                 Console.WriteLine(e.CallStatus);
             }
-
         public void Call(TelephoneNumber targetNumber)
         {
             if (TerminalStatus==TerminalState.on)
@@ -36,17 +35,15 @@ namespace TelephoneExchange
         }
 
         public event EventHandler StopCalling;
-
         protected virtual void OnStopCalling()
         {
 
             if (StopCalling != null)
             {
-                StopCalling(this,EventArgs.Empty);
+                StopCalling(this, EventArgs.Empty);
             }
            
         }
-
         public void StopCall()
         {
             if (TerminalStatus == TerminalState.busy || TerminalStatus == TerminalState.call )
@@ -56,9 +53,8 @@ namespace TelephoneExchange
             }
 
         }
-
+        
         public event EventHandler AnswerCalling;
-
         protected virtual void OnAnswerCall()
         {
 
@@ -68,7 +64,6 @@ namespace TelephoneExchange
             }
 
         }
-
         public void AnswerCall()
         {
             if (TerminalStatus == TerminalState.busy)
@@ -79,7 +74,7 @@ namespace TelephoneExchange
 
         }
 
-        public void Ringing(object obj,CallingEventArgs args)
+        public void HandlerRinging(Object obj, CallingEventArgs args)
             {
                 if (TerminalStatus == TerminalState.on)
                 {
@@ -94,7 +89,6 @@ namespace TelephoneExchange
                 TerminalStatus = TerminalState.on;
             }
         }
-         
         public void UnPlug()
         {
             if(TerminalStatus==TerminalState.on)

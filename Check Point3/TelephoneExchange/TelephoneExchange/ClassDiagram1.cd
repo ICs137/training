@@ -10,16 +10,18 @@
   <Class Name="TelephoneExchange.Port">
     <Position X="2.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEACQAAAFAABAAAAAAAAAAAAAAAAAAAAAgAEAAAAAAA=</HashCode>
+      <HashCode>BEACQAAAFACBIJAAAAAAAAAAgAAAABAAggAEAgAAAAA=</HashCode>
       <FileName>classes\Port.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="TelephoneExchange.Terminal">
     <Position X="0.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BEAAQAAIBACBAAAAAAABAAAAAgAAAAQAAgAAAgCAAAA=</HashCode>
+      <HashCode>BEAAQAAIBACBAAAAAAAAIAAAAgAAAAQAAgAAAgCAAAA=</HashCode>
       <FileName>classes\Terminal.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="TelephoneExchange.Client">
     <Position X="6.25" Y="6.75" Width="1.5" />
@@ -78,7 +80,14 @@
     <Position X="8.25" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAABAAAAAAAAAAAGgAgAAAAAAAAAAAAAgA=</HashCode>
-      <FileName>Contract.cs</FileName>
+      <FileName>classes\Contract.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TelephoneExchange.MarshallingInfo">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAABAgAAAAAAIACCAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>classes\MarshallingInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="TelephoneExchange.TelephoneNumber">
@@ -95,10 +104,24 @@
       <FileName>interfaces\IClient.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="TelephoneExchange.ITerminal" Collapsed="true">
+    <Position X="13.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BEAAQAAIBACBAAAAAAABAAAAAgAAAAAAAgAAAgAAAAA=</HashCode>
+      <FileName>interfaces\ITerminal.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TelephoneExchange.IPort" Collapsed="true">
+    <Position X="12.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BEACQAAAFACBIJAAAAAAAAAAgAAAABAAggAEAgAAAAA=</HashCode>
+      <FileName>interfaces\IPort.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Enum Name="TelephoneExchange.PortState">
     <Position X="0.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEgAAAAACAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAEgAAAAECAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>enum\PortState.cs</FileName>
     </TypeIdentifier>
   </Enum>

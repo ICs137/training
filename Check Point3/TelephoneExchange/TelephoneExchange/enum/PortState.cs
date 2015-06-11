@@ -8,6 +8,7 @@ namespace TelephoneExchange
     public enum PortState
     {
         on,
+        call,
         busy,
         blocked,
         off

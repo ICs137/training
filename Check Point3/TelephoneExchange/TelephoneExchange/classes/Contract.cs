@@ -27,21 +27,20 @@ namespace TelephoneExchange
         public readonly Guid id;
         public readonly DateTime dayOfSigning;
         public readonly DateTime expireDay;
-        
-
+      
         public Contract()
         {
             id = Guid.NewGuid();
             dayOfSigning = DateTime.Now.Date;
-            expireDay = dayOfSigning + new TimeSpan(365, 0, 0, 0);
-
+         
         }
 
-        public Contract( Terminal terminal, Tariff tariff)
+        public Contract(Terminal terminal, Tariff tariff, TimeSpan duration)
             : this()
         {
             this.ActualTariff = tariff;
             Terminal = terminal;
+            expireDay = dayOfSigning + duration;
         }
 
 

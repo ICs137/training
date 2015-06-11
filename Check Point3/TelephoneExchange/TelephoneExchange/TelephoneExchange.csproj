@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\CallInfo.cs" />
-    <Compile Include="Contract.cs" />
+    <Compile Include="classes\Contract.cs" />
     <Compile Include="enum\CallState.cs" />
     <Compile Include="classes\CallingEventArgs.cs" />
     <Compile Include="classes\BillingSystem.cs" />
@@ -51,6 +51,9 @@
     <Compile Include="classes\Port.cs" />
     <Compile Include="enum\PortState.cs" />
     <Compile Include="interfaces\IClient.cs" />
+    <Compile Include="classes\MarshallingInfo.cs" />
+    <Compile Include="interfaces\IPort.cs" />
+    <Compile Include="interfaces\ITerminal.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="classes\TelephoneExchange.cs" />
