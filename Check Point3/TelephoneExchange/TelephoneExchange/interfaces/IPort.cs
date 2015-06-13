@@ -10,27 +10,22 @@ namespace TelephoneExchange
 {
     interface IPort: INotifyPropertyChanged
     {
-        public  Guid Id { get; private set; }
-        private PortState portStatus;
-        public PortState PortStatus{get;set;}  
+        Guid Id { get;  }
+        PortState PortStatus{get;set;}  
 
-        public event EventHandler<CallingEventArgs> Calling;
-        protected virtual void OnStartCalling(Object obj, CallingEventArgs args);
-        public void Call(Object obj, CallingEventArgs args);
+        event EventHandler<CallingEventArgs> Calling;
+        void Call(Object obj, CallingEventArgs args);
 
-        public event EventHandler StopCalling;
-        protected virtual void OnStopCalling();
-        public void StopCall(Object obj, EventArgs e);
+        event EventHandler StopCalling;
+        void StopCall(Object obj, EventArgs e);
 
-        public event EventHandler AnswerCalling;
-        protected virtual void OnAnswerCall();
-        public void AnswerCall(Object obj, EventArgs args);
+        event EventHandler AnswerCalling;
+        void AnswerCall(Object obj, EventArgs args);
 
-        public event EventHandler<CallingEventArgs> IncomingCalling;
-        protected virtual void OnIncomingCalling(Object obj, CallingEventArgs args);
-        public void IncomingCall(CallingEventArgs args);
+        event EventHandler<CallingEventArgs> IncomingCalling;
+        void IncomingCall(CallingEventArgs args);
         
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void NotifyPropertyChanged([CallerMemberName] String propertyName = "");
+        event PropertyChangedEventHandler PropertyChanged;
+        
     }
 }

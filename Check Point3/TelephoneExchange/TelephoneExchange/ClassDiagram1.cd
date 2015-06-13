@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="TelephoneExchange.TelephoneExchange">
-    <Position X="2.5" Y="0.5" Width="1.5" />
+    <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AkAAAIAAgAABgQAQAAAEAgAAAACAAASEEAAEAAAABIA=</HashCode>
       <FileName>classes\TelephoneExchange.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="TelephoneExchange.Port">
-    <Position X="2.25" Y="3.25" Width="1.5" />
+    <Position X="8.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BEACQAAAFACBIJAAAAAAAAAAgAAAABAAggAEAgAAAAA=</HashCode>
       <FileName>classes\Port.cs</FileName>
@@ -26,7 +27,7 @@
   <Class Name="TelephoneExchange.Client">
     <Position X="6.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAIAAAACAA=</HashCode>
       <FileName>classes\Client.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -46,7 +47,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="TelephoneExchange.Tariff">
-    <Position X="8.25" Y="4.75" Width="1.5" />
+    <Position X="8.25" Y="5.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
@@ -63,7 +64,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="TelephoneExchange.CallingEventArgs">
-    <Position X="10.5" Y="5" Width="1.5" />
+    <Position X="10.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>classes\CallingEventArgs.cs</FileName>
@@ -83,29 +84,22 @@
       <FileName>classes\Contract.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TelephoneExchange.MarshallingInfo">
-    <Position X="5.5" Y="3.25" Width="1.5" />
+  <Class Name="TelephoneExchange.Subscriptions">
+    <Position X="4" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAABAgAAAAAAIACCAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>classes\MarshallingInfo.cs</FileName>
+      <HashCode>AAAACAAAAAAABAgAAgAAAAACCAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>classes\Subscriptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="TelephoneExchange.TelephoneNumber">
-    <Position X="4" Y="5.25" Width="1.5" />
+    <Position X="4" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>classes\TelephoneNumber.cs</FileName>
     </TypeIdentifier>
   </Struct>
-  <Interface Name="TelephoneExchange.IClient">
-    <Position X="8.25" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>interfaces\IClient.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="TelephoneExchange.ITerminal" Collapsed="true">
-    <Position X="13.25" Y="5" Width="1.5" />
+    <Position X="12.75" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BEAAQAAIBACBAAAAAAABAAAAAgAAAAAAAgAAAgAAAAA=</HashCode>
       <FileName>interfaces\ITerminal.cs</FileName>
@@ -118,8 +112,15 @@
       <FileName>interfaces\IPort.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="TelephoneExchange.ITelephoneExchange">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>interfaces\ITelephoneExchange.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Enum Name="TelephoneExchange.PortState">
-    <Position X="0.5" Y="2.5" Width="1.5" />
+    <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEgAAAAECAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>enum\PortState.cs</FileName>

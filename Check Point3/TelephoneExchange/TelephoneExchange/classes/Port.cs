@@ -10,7 +10,7 @@ namespace TelephoneExchange
     public class Port : IPort
     {
         public  Guid Id { get; private set; }
-        public Port (int id)
+        public Port ()
             {
                 Id = Guid.NewGuid();
                 portStatus = PortState.on;
@@ -75,7 +75,6 @@ namespace TelephoneExchange
             }
         }
 
-
         public event EventHandler AnswerCalling;
         protected virtual void OnAnswerCall()
         {
@@ -96,18 +95,16 @@ namespace TelephoneExchange
                        
         }
 
-
-
         public event EventHandler<CallingEventArgs> IncomingCalling;
         protected virtual void OnIncomingCalling(Object obj, CallingEventArgs args)
-        {
-
-            if (IncomingCalling != null)
             {
-                IncomingCalling(this, args);
-            }
 
-        }
+                if (IncomingCalling != null)
+                {
+                    IncomingCalling(this, args);
+                }
+
+            }
         public void IncomingCall(CallingEventArgs args)
             {
                 if (PortStatus==PortState.on)
@@ -115,12 +112,8 @@ namespace TelephoneExchange
                         args.CallStatus = CallState.NotRespond;
                         OnIncomingCalling( this, args);
                     }
-              
             }
 
-
-
-       
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
@@ -130,6 +123,5 @@ namespace TelephoneExchange
             }
         }
 
-        
     }
 }

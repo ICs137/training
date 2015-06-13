@@ -5,13 +5,7 @@ using System.Text;
 
 namespace TelephoneExchange
 {
-    public interface IClient
-
+    public interface ITelephoneExchange
     {
-
-
-
-
-
     }
 }

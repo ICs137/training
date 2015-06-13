@@ -5,27 +5,20 @@ using System.Text;
 
 namespace TelephoneExchange
 {
-    public class MarshallingInfo
+    public class Subscriptions
     {
+        private readonly ITelephoneExchange _telephoneExchange;
         private readonly IPort _port;
-        public IPort Port
-        {
-            get { return _port; }
-        }
 
         private readonly ITerminal _terminal;
-        public ITerminal Terminal
-        {
-          get { return _terminal; }  
-        } 
-
-        public MarshallingInfo(IPort port, ITerminal terminal)
+        public Subscriptions(TelephoneExchange ATE,Port port, Terminal terminal)
         {
             _port=port;
             _terminal = terminal;
-            Connect();
+            _telephoneExchange = ATE;
+            this.Subscript();
         }
-        public void  Connect()
+        public void Subscript()
         {
             _terminal.StartCalling -= _port.Call;
             _terminal.StartCalling += _port.Call;
@@ -33,22 +26,25 @@ namespace TelephoneExchange
             _terminal.StopCalling += _port.StopCall;
             _terminal.AnswerCalling -= _port.AnswerCall;
             _terminal.AnswerCalling += _port.AnswerCall;
-            _port.IncomingCalling -= _terminal.Ringing;
-            _port.IncomingCalling += _terminal.Ringing;
+            _port.IncomingCalling -= _terminal.HandlerRinging;
+            _port.IncomingCalling += _terminal.HandlerRinging;
 
         }
 
-        public void Unconnect()
+        public void UnSubscript()
         {
 
             _terminal.StartCalling -= _port.Call;
             _terminal.StopCalling -= _port.StopCall;
             _terminal.AnswerCalling -= _port.AnswerCall;
-            _port.IncomingCalling -= _terminal.Ringing;
+            _port.IncomingCalling -= _terminal.HandlerRinging;
 
         }
 
-
+        ~Subscriptions()
+        {
+            this.UnSubscript();
+        }
 
 
 

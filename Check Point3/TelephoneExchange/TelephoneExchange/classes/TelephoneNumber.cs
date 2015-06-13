@@ -7,10 +7,14 @@ namespace TelephoneExchange
 {
     public struct TelephoneNumber
     {
-        public int PhoneNumber { get; private set; }
+        private readonly int _phoneNumber;
+        public int PhoneNumber
+        {
+            get { return _phoneNumber; }
+        }
         public TelephoneNumber(int number)
         {
-            PhoneNumber = number;
+            _phoneNumber = number;
         }
     }
 }
