@@ -42,9 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\CallInfo.cs" />
+    <Compile Include="classes\CallingEventArgs.cs" />
     <Compile Include="classes\Contract.cs" />
     <Compile Include="enum\CallState.cs" />
-    <Compile Include="classes\CallingEventArgs.cs" />
     <Compile Include="classes\BillingSystem.cs" />
     <Compile Include="classes\Client.cs" />
     <Compile Include="classes\MarketingDepartment.cs" />

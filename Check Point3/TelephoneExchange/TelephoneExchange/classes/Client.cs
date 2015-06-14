@@ -14,12 +14,18 @@ namespace TelephoneExchange
             set { contracts = value; }
         }
         private readonly string name;
-
         public string Name
         {
           get { return name; }  
-        } 
+        }
+        private List<CallInfo> calls = new List<CallInfo>();
+        public List<CallInfo> Calls
+        {
+            get { return calls; }
+            set { calls = value; }
+        }
 
+        
 
 
 

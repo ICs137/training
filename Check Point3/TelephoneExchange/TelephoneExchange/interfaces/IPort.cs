@@ -10,21 +10,18 @@ namespace TelephoneExchange
 {
     interface IPort: INotifyPropertyChanged
     {
-        Guid Id { get;  }
+        
         PortState PortStatus{get;set;}  
-
         event EventHandler<CallingEventArgs> Calling;
         void Call(Object obj, CallingEventArgs args);
-
         event EventHandler StopCalling;
-        void StopCall(Object obj, EventArgs e);
-
+        void StopCall(Object obj, EventArgs args);
+        void StopCall();
+        event EventHandler ExternalStopCalling;
         event EventHandler AnswerCalling;
         void AnswerCall(Object obj, EventArgs args);
-
-        event EventHandler<CallingEventArgs> IncomingCalling;
-        void IncomingCall(CallingEventArgs args);
-        
+        event EventHandler IncomingCalling;
+        void IncomingCall();
         event PropertyChangedEventHandler PropertyChanged;
         
     }

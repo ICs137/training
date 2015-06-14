@@ -15,16 +15,17 @@ namespace TelephoneExchange
         public TerminalState TerminalStatus { get; private set; }
 
         public event EventHandler<CallingEventArgs> StartCalling;
-        protected virtual void OnStartCalling(TelephoneNumber targetNumber)
+
+        protected virtual void OnStartCalling(int targetNumber)
             {
-                CallingEventArgs e = new CallingEventArgs(targetNumber);
+                CallingEventArgs e = new CallingEventArgs(targetNumber,MyPhoneNumber.PhoneNumber);
                 if (StartCalling != null)
                 {
                     StartCalling(this, e);
                 }
                 Console.WriteLine(e.CallStatus);
             }
-        public void Call(TelephoneNumber targetNumber)
+        public void Call(int targetNumber)
         {
             if (TerminalStatus==TerminalState.on)
             {
@@ -74,11 +75,19 @@ namespace TelephoneExchange
 
         }
 
-        public void HandlerRinging(Object obj, CallingEventArgs args)
+        public void HandlerRinging(Object obj, EventArgs args)
             {
                 if (TerminalStatus == TerminalState.on)
                 {
                     TerminalStatus = TerminalState.busy;
+                }
+            }
+
+        public void ExternalStopCall(Object obj, EventArgs args)
+            {
+                if(TerminalStatus==TerminalState.call || TerminalStatus==TerminalState.busy)
+                {
+                    TerminalStatus = TerminalState.on;
                 }
             }
 

@@ -10,12 +10,12 @@ namespace TelephoneExchange
     {
          TelephoneNumber MyPhoneNumber { get; }
          event EventHandler<CallingEventArgs> StartCalling;
-         void Call(TelephoneNumber targetNumber);
+         void Call(int targetNumber);
          event EventHandler StopCalling;
          void StopCall();
          event EventHandler AnswerCalling;
          void AnswerCall();
-         void HandlerRinging(Object obj,CallingEventArgs args);
-
+         void HandlerRinging(Object obj, EventArgs args);
+         void ExternalStopCall(Object obj, EventArgs args);
     }
 }

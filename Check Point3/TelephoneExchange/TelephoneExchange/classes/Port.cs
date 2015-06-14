@@ -55,14 +55,13 @@ namespace TelephoneExchange
 
         }
 
-
         public event EventHandler StopCalling;
-        protected virtual void OnStopCalling( EventArgs args)
+        protected virtual void OnStopCalling()
         {
 
             if (StopCalling != null)
             {
-                StopCalling(this, EventArgs.Empty);
+                StopCalling(this,EventArgs.Empty);
             }
 
         }
@@ -70,15 +69,33 @@ namespace TelephoneExchange
         {
             if (PortStatus == PortState.busy || PortStatus == PortState.call)
             {
-                OnStopCalling( args);
+                OnStopCalling();
                 PortStatus = PortState.on;
             }
         }
+        public void StopCall()
+        {
+            if (PortStatus == PortState.busy || PortStatus == PortState.call)
+            {
+                OnExternalStopCalling();
+                PortStatus = PortState.on;
+            }
+        }
+        public event EventHandler ExternalStopCalling;
+        protected virtual void OnExternalStopCalling()
+        {
+
+            if (ExternalStopCalling != null)
+            {
+                ExternalStopCalling(this, EventArgs.Empty);
+            }
+        }
+
 
         public event EventHandler AnswerCalling;
         protected virtual void OnAnswerCall()
         {
-
+            
             if (AnswerCalling != null)
             {
                 AnswerCalling(this, EventArgs.Empty);
@@ -95,22 +112,22 @@ namespace TelephoneExchange
                        
         }
 
-        public event EventHandler<CallingEventArgs> IncomingCalling;
-        protected virtual void OnIncomingCalling(Object obj, CallingEventArgs args)
+        public event EventHandler IncomingCalling;
+        protected virtual void OnIncomingCalling()
             {
 
                 if (IncomingCalling != null)
                 {
-                    IncomingCalling(this, args);
+                    IncomingCalling(this, EventArgs.Empty);
                 }
 
             }
-        public void IncomingCall(CallingEventArgs args)
+        public void IncomingCall()
             {
                 if (PortStatus==PortState.on)
                     {
-                        args.CallStatus = CallState.NotRespond;
-                        OnIncomingCalling( this, args);
+                        OnIncomingCalling();
+                        PortStatus=PortState.busy;
                     }
             }
 
@@ -122,6 +139,8 @@ namespace TelephoneExchange
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+       
 
     }
 }

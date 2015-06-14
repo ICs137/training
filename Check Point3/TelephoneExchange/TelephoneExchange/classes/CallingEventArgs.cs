@@ -5,14 +5,17 @@ using System.Text;
 
 namespace TelephoneExchange
 {
-    public class CallingEventArgs : EventArgs
+    public class CallingEventArgs
     {
-        public CallingEventArgs(TelephoneNumber target)
-          {
-              Target= target;
-          }
+        public CallingEventArgs(int target, int initiator)
+        {
+            Target = target;
+            Initiator = initiator;
+        }
 
-        public TelephoneNumber Target { get; private set; }
-        public CallState CallStatus { get; set; }
+    public  CallState CallStatus { get; set; }
+    public  int Initiator { get; private set; }
+    public  int Target { get;private set; }
+    
     }
 }

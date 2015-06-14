@@ -7,43 +7,69 @@ namespace TelephoneExchange
 {
     public class Subscriptions
     {
-        private readonly ITelephoneExchange _telephoneExchange;
-        private readonly IPort _port;
-
-        private readonly ITerminal _terminal;
+        public readonly ITelephoneExchange _telephoneExchange;
+        internal IPort Port { get; private set; }
+        internal  ITerminal Terminal { get; private set; }
         public Subscriptions(TelephoneExchange ATE,Port port, Terminal terminal)
         {
-            _port=port;
-            _terminal = terminal;
+            Port = port;
+            Terminal = terminal;
             _telephoneExchange = ATE;
             this.Subscript();
+            this.SubscriptATE();
         }
         public void Subscript()
         {
-            _terminal.StartCalling -= _port.Call;
-            _terminal.StartCalling += _port.Call;
-            _terminal.StopCalling -= _port.StopCall;
-            _terminal.StopCalling += _port.StopCall;
-            _terminal.AnswerCalling -= _port.AnswerCall;
-            _terminal.AnswerCalling += _port.AnswerCall;
-            _port.IncomingCalling -= _terminal.HandlerRinging;
-            _port.IncomingCalling += _terminal.HandlerRinging;
+            Terminal.StartCalling -= Port.Call;
+            Terminal.StartCalling += Port.Call;
+            Terminal.StopCalling -= Port.StopCall;
+            Terminal.StopCalling += Port.StopCall;
+            Terminal.AnswerCalling -= Port.AnswerCall;
+            Terminal.AnswerCalling += Port.AnswerCall;
+
+            Port.IncomingCalling -= Terminal.HandlerRinging;
+            Port.IncomingCalling += Terminal.HandlerRinging;
+            Port.ExternalStopCalling -= Terminal.ExternalStopCall;
+            Port.ExternalStopCalling += Terminal.ExternalStopCall;
+
 
         }
+
+        public void SubscriptATE()
+        {
+            Port.Calling -= _telephoneExchange.StartCall;
+            Port.Calling += _telephoneExchange.StartCall;
+            Port.StopCalling -= _telephoneExchange.StopCall;
+            Port.StopCalling += _telephoneExchange.StopCall;
+            Port.AnswerCalling -= _telephoneExchange.AnswerCalling;
+            Port.AnswerCalling += _telephoneExchange.AnswerCalling;
+
+        }
+
 
         public void UnSubscript()
         {
-
-            _terminal.StartCalling -= _port.Call;
-            _terminal.StopCalling -= _port.StopCall;
-            _terminal.AnswerCalling -= _port.AnswerCall;
-            _port.IncomingCalling -= _terminal.HandlerRinging;
-
+            Terminal.StartCalling -= Port.Call;
+            Terminal.StopCalling -= Port.StopCall;
+            Terminal.AnswerCalling -= Port.AnswerCall;
+            Port.IncomingCalling -= Terminal.HandlerRinging;
+            Port.ExternalStopCalling -= Terminal.ExternalStopCall;
         }
+
+        public void UnSubscriptATE()
+        {
+            Port.Calling -= _telephoneExchange.StartCall;
+            Port.StopCalling -= _telephoneExchange.StopCall;
+            Port.AnswerCalling -= _telephoneExchange.AnswerCalling;
+        }
+
+
+
 
         ~Subscriptions()
         {
             this.UnSubscript();
+            this.UnSubscriptATE();
         }
 
 
