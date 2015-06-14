@@ -28,15 +28,12 @@ namespace TelephoneExchange
         {
            return unUsedTerminals.Dequeue();
         }
-   
-        public void CreateSubscriptions()
+
+        private void CreateSubscriptions(Port port, Terminal terminal)
         {
-            if (unUsedPorts.Count != 0 && unUsedTerminals.Count != 0)
-            { 
-                Port port = GetFreePort();
-                Terminal terminal = GetFreeTerminal();
-                Subscriptions.Add(new Subscriptions(this,port, terminal));
-            }
+         
+          Subscriptions.Add(new Subscriptions(this,port, terminal));
+        
         }
         public void CreateUnUsedPort()
             {
@@ -51,11 +48,11 @@ namespace TelephoneExchange
                 }
                    TelephoneNumber number = new  TelephoneNumber(newNumber);
                    unUsedTerminals.Enqueue(new Terminal(number));
-                
             }
-        public bool CheckPhoneNumber(int number)
+
+        private bool CheckPhoneNumber(int number)
         {
-            if (Subscriptions.First(p => p.Terminal.MyPhoneNumber.PhoneNumber == number) != null && unUsedTerminals.First(p => p.MyPhoneNumber.PhoneNumber == number) != null)
+            if (Subscriptions.FirstOrDefault(p => p.Terminal.MyPhoneNumber.PhoneNumber == number) != null || unUsedTerminals.FirstOrDefault(p => p.MyPhoneNumber.PhoneNumber == number) != null)
             {
                 return true;
             }
@@ -120,6 +117,35 @@ namespace TelephoneExchange
 
            ActiveCalls.Remove(callInfo);
 
+        }
+
+        public void CreateClientConection(int newNumber , Client client)
+        {
+
+            if (unUsedPorts.Count == 0)
+            {
+                CreateUnUsedPort();
+            }
+            
+            Port freePort = GetFreePort();
+            if (CheckPhoneNumber(newNumber))
+                {
+                    Console.WriteLine(" This number is busy");
+                    return ;
+                }
+            TelephoneNumber number = new TelephoneNumber(newNumber);
+            Terminal terminal= new Terminal(number);
+            CreateSubscriptions( freePort,terminal);
+            client.Terminal = terminal;
+            
+        }
+
+        public void ToStringStatusActiveCall()
+        {
+            foreach (var e in ActiveCalls)
+            {
+                Console.WriteLine("Initiator- {0} Target {1} status {2} ", e.CallProperties.Initiator, e.CallProperties.Target, e.CallProperties.CallStatus);
+            }
         }
 
     }

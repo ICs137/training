@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TelephoneExchange
 {
-    interface IPort: INotifyPropertyChanged
+     interface IPort: INotifyPropertyChanged
     {
         
         PortState PortStatus{get;set;}  

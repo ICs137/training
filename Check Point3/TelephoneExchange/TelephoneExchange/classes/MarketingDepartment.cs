@@ -11,7 +11,11 @@ namespace TelephoneExchange
         private Dictionary<IPort, IClientInfo> Clients = new Dictionary<IPort, IClientInfo>();
         public void AddCallUser( CallInfo call )
         {
-            IClientInfo client= Clients.FirstOrDefault(p => p.Key.);
+           IClientInfo client= Clients[call.PortInitiator];
+           
+
+
+
         }
 
 

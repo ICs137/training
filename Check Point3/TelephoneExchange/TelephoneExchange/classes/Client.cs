@@ -25,9 +25,13 @@ namespace TelephoneExchange
             set { calls = value; }
         }
 
-        
+        public Terminal Terminal { get; set; }
 
+        public Client (string name )
+        {
+            this.name = name;
 
+        }
 
 
     }

@@ -43,6 +43,15 @@ namespace TelephoneExchange
             expireDay = dayOfSigning + duration;
         }
 
+        public Contract(Terminal terminal)
+            : this()
+        {
+           
+            Terminal = terminal;
+            
+        }
+
+
 
 
 

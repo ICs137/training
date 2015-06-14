@@ -23,7 +23,7 @@ namespace TelephoneExchange
                 {
                     StartCalling(this, e);
                 }
-                Console.WriteLine(e.CallStatus);
+                
             }
         public void Call(int targetNumber)
         {
