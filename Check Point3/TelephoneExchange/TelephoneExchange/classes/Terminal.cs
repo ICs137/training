@@ -13,9 +13,7 @@ namespace TelephoneExchange
               MyPhoneNumber = number;
           }
         public TerminalState TerminalStatus { get; private set; }
-
         public event EventHandler<CallingEventArgs> StartCalling;
-
         protected virtual void OnStartCalling(int targetNumber)
             {
                 CallingEventArgs e = new CallingEventArgs(targetNumber,MyPhoneNumber.PhoneNumber);
@@ -34,7 +32,6 @@ namespace TelephoneExchange
             }
           
         }
-
         public event EventHandler StopCalling;
         protected virtual void OnStopCalling()
         {
@@ -54,7 +51,6 @@ namespace TelephoneExchange
             }
 
         }
-        
         public event EventHandler AnswerCalling;
         protected virtual void OnAnswerCall()
         {
@@ -74,7 +70,6 @@ namespace TelephoneExchange
             }
 
         }
-
         public void HandlerRinging(Object obj, EventArgs args)
             {
                 if (TerminalStatus == TerminalState.on)
@@ -82,7 +77,6 @@ namespace TelephoneExchange
                     TerminalStatus = TerminalState.busy;
                 }
             }
-
         public void ExternalStopCall(Object obj, EventArgs args)
             {
                 if(TerminalStatus==TerminalState.call || TerminalStatus==TerminalState.busy)
@@ -90,7 +84,6 @@ namespace TelephoneExchange
                     TerminalStatus = TerminalState.on;
                 }
             }
-
         public void Plug()
         {
             if (TerminalStatus==TerminalState.off)

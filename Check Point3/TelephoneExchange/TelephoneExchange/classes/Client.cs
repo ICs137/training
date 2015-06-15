@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TelephoneExchange
 {
-    public class Client:IClientInfo
+    public class Client
     {
         private List<Contract> contracts = new List<Contract>();
         public List<Contract> Contracts
@@ -18,21 +18,25 @@ namespace TelephoneExchange
         {
           get { return name; }  
         }
-        private List<CallInfo> calls = new List<CallInfo>();
-        public List<CallInfo> Calls
-        {
-            get { return calls; }
-            set { calls = value; }
-        }
-
-        public Terminal Terminal { get; set; }
-
         public Client (string name )
         {
             this.name = name;
-
         }
-
+        public ReportEventArgs report= new ReportEventArgs();
+        public event EventHandler<ReportEventArgs> Report;
+        protected virtual void OnReport( Query query,Contract contract)
+        {
+            report.contract = contract;
+            report.Queries = query;
+            if (Report!=null)
+            {
+                Report(this, report);
+            }
+        }
+        public void GetReport(Query query,Contract contract )
+            {
+                OnReport(query, contract);
+            }
 
     }
 }

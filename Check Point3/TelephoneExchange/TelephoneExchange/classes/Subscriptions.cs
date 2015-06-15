@@ -34,7 +34,6 @@ namespace TelephoneExchange
 
 
         }
-
         public void SubscriptATE()
         {
             Port.Calling -= _telephoneExchange.StartCall;
@@ -45,8 +44,6 @@ namespace TelephoneExchange
             Port.AnswerCalling += _telephoneExchange.AnswerCalling;
 
         }
-
-
         public void UnSubscript()
         {
             Terminal.StartCalling -= Port.Call;
@@ -55,16 +52,12 @@ namespace TelephoneExchange
             Port.IncomingCalling -= Terminal.HandlerRinging;
             Port.ExternalStopCalling -= Terminal.ExternalStopCall;
         }
-
         public void UnSubscriptATE()
         {
             Port.Calling -= _telephoneExchange.StartCall;
             Port.StopCalling -= _telephoneExchange.StopCall;
             Port.AnswerCalling -= _telephoneExchange.AnswerCalling;
         }
-
-
-
 
         ~Subscriptions()
         {

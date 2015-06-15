@@ -5,7 +5,10 @@ using System.Text;
 
 namespace TelephoneExchange
 {
-    public class BillingSystem
+    public interface ITariff
     {
+        int  MinutePrice  {get;}
+        int PrepaidMinutes { get;}
+
     }
 }

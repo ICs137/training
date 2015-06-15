@@ -8,7 +8,6 @@ namespace TelephoneExchange
 {
     public interface ITelephoneExchange
     {
-
         void StartCall(object obj, CallingEventArgs args);
         void StopCall(object obj, EventArgs argss);
         void AnswerCalling(object obj, EventArgs args);

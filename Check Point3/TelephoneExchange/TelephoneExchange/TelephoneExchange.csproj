@@ -44,17 +44,17 @@
     <Compile Include="classes\CallInfo.cs" />
     <Compile Include="classes\CallingEventArgs.cs" />
     <Compile Include="classes\Contract.cs" />
+    <Compile Include="interfaces\IMarketingDepartment.cs" />
     <Compile Include="enum\CallState.cs" />
-    <Compile Include="classes\BillingSystem.cs" />
     <Compile Include="classes\Client.cs" />
     <Compile Include="classes\MarketingDepartment.cs" />
     <Compile Include="classes\Port.cs" />
     <Compile Include="enum\PortState.cs" />
-    <Compile Include="interfaces\IClientInfo.cs" />
     <Compile Include="classes\Subscriptions.cs" />
     <Compile Include="interfaces\IPort.cs" />
     <Compile Include="interfaces\ITerminal.cs" />
     <Compile Include="interfaces\ITelephoneExchange.cs" />
+    <Compile Include="interfaces\Itariff.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="classes\TelephoneExchange.cs" />
@@ -63,6 +63,10 @@
     <Compile Include="classes\Tariff.cs" />
     <Compile Include="classes\TelephoneNumber.cs" />
     <Compile Include="enum\TerminalState.cs" />
+    <Compile Include="classes\TariffLight.cs" />
+    <Compile Include="classes\SimpleTariff.cs" />
+    <Compile Include="enum\Query.cs" />
+    <Compile Include="classes\ReportEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

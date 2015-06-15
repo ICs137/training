@@ -13,29 +13,10 @@ namespace TelephoneExchange
         public Port ()
             {
                 Id = Guid.NewGuid();
-                portStatus = PortState.on;
+                PortStatus = PortState.on;
             }
-
-        private PortState portStatus;
-        public PortState PortStatus 
-            {
-                get
-                {
-                    return portStatus;
-                }
-
-                set 
-                {
-                    if(portStatus==value)
-                        {
-                            return;
-                        }
-                    portStatus = value;
-                    NotifyPropertyChanged();
-                }
-            }
-
-        public event EventHandler<CallingEventArgs> Calling;
+        public PortState PortStatus {get;set;}
+        public event EventHandler<CallingEventArgs> Calling; 
         protected virtual void OnStartCalling(Object obj, CallingEventArgs args)
         {
            
@@ -53,8 +34,7 @@ namespace TelephoneExchange
                 PortStatus = PortState.call;
             }
 
-        }
-
+        }//  processes an outgoing call from the terminal
         public event EventHandler StopCalling;
         protected virtual void OnStopCalling()
         {
@@ -65,14 +45,14 @@ namespace TelephoneExchange
             }
 
         }
-        public void StopCall(Object obj, EventArgs args)
+        public void StopCall(Object obj, EventArgs args) //stop calling from the terminal
         {
             if (PortStatus == PortState.busy || PortStatus == PortState.call)
             {
                 OnStopCalling();
                 PortStatus = PortState.on;
             }
-        }
+        } 
         public void StopCall()
         {
             if (PortStatus == PortState.busy || PortStatus == PortState.call)
@@ -90,8 +70,6 @@ namespace TelephoneExchange
                 ExternalStopCalling(this, EventArgs.Empty);
             }
         }
-
-
         public event EventHandler AnswerCalling;
         protected virtual void OnAnswerCall()
         {
@@ -111,7 +89,6 @@ namespace TelephoneExchange
             }
                        
         }
-
         public event EventHandler IncomingCalling;
         protected virtual void OnIncomingCalling()
             {
@@ -129,18 +106,9 @@ namespace TelephoneExchange
                         OnIncomingCalling();
                         PortStatus=PortState.busy;
                     }
+               
             }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-       
+            
 
     }
 }

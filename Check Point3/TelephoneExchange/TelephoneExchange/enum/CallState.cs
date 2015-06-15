@@ -11,7 +11,7 @@ namespace TelephoneExchange
         WrongNumber,
         TargetPortBusy,
         NotRespond,
-        ConnectionSucceded,
+        ConnectionSuccessful,
         finished
     }
 }

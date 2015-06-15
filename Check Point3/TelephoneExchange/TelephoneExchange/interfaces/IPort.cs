@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace TelephoneExchange
 {
-     interface IPort: INotifyPropertyChanged
+     interface IPort
     {
-        
-        PortState PortStatus{get;set;}  
+        PortState PortStatus { get; set; }  
         event EventHandler<CallingEventArgs> Calling;
         void Call(Object obj, CallingEventArgs args);
         event EventHandler StopCalling;
@@ -22,7 +21,6 @@ namespace TelephoneExchange
         void AnswerCall(Object obj, EventArgs args);
         event EventHandler IncomingCalling;
         void IncomingCall();
-        event PropertyChangedEventHandler PropertyChanged;
-        
+          
     }
 }

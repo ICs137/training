@@ -5,13 +5,9 @@ using System.Text;
 
 namespace TelephoneExchange
 {
-    public interface IClientInfo
-
+    public enum Query
     {
-
-
-
-
-
+       callsPerMonth,
+        LastCall
     }
 }
