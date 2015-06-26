@@ -14,7 +14,12 @@ namespace exercise_1
         static void Main(string[] args)
 
         {
-
+            Console.WriteLine();
+            Console.WriteLine("  ^---^  ");
+            Console.WriteLine(" (o   O)    ");
+            Console.WriteLine("   =8=  ___| ");
+            Console.WriteLine("      ( ___i");
+            Console.WriteLine("       I   I  ");
 
             float A,B,X;
           Console.Write("Введите переменную [a] : ");

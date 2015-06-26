@@ -83,7 +83,7 @@ namespace TelephoneExchange
                 return null;
             }
 
-        # region eventCall
+        # region event handling calls
         public void StartCall(object obj,CallingEventArgs args)
           { 
               
@@ -182,7 +182,7 @@ namespace TelephoneExchange
             client.Contracts.Add(contract);
             MarketingDepartment.AttachClient(client);
 
-        }
+        }//the creation of a contract and activation services
         public void ToStringStatusActiveCall()
         {
             Console.WriteLine("log Cals");

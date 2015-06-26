@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TelephoneExchange
 {
-    public class Subscriptions
+    public class Subscriptions //class connects the port terminal and the ATE 
     {
         public readonly ITelephoneExchange _telephoneExchange;
         internal IPort Port { get; private set; }

@@ -39,7 +39,7 @@ namespace TelephoneExchange
                     calls[contract].Add(callinfo);
                 }
 
-        }
+        }//record the last call in the call list
         public int GetCostCall( CallInfo callinfo)
         {
            Contract contract= GetContract(callinfo.PortInitiator);
@@ -90,7 +90,7 @@ namespace TelephoneExchange
             {
                 client.Report -= GetReport;
                 client.Report += GetReport;
-            }
+            }//Activation of service reports
         public void UnAttachClient(Client client)
             {
                 client.Report -= GetReport;
