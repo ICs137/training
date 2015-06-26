@@ -18,7 +18,7 @@ namespace BL
         }
 
         private readonly FilesInfo _filesInfo;
-        public FilesInfo FilesInfo
+        public FilesInfo FilesInfoItem
         {
             get { return _filesInfo; }
         }
@@ -40,14 +40,53 @@ namespace BL
                 return name;
             }
         }
+        public string GetSaveFileFullPath
+        { 
+          get
+            {
+                return FilesInfoItem.DefaultSaveFilePath+"timecreation"+ DateTime.Now.ToString(@" hh\.mm\.ss\_") +FileName  ;
+            }
+        
+        }
+
+        private Parser parser = new Parser();
+        public Parser Parser
+        {
+            get { return parser; }
+        }
+
+        private FileReader fileReader = new FileReader();
+        public FileReader FileReader
+        {
+            get { return fileReader; }
+        }
+        
         public HandlerFile(ConcurrentQueue<ItemOrder> bufferOrders, FilesInfo filesInfo,FileSystemEventArgs args)
             {
                 this.BufferOrders=bufferOrders;
                 this._filesInfo = filesInfo;
                 this._fileName = args.Name;
             }
-        public Parser parser= new Parser(ManagerName);
-       
+
+        public void AddToQueue( string line,string managerName)
+            {
+                ItemOrder tempOrder = Parser.GetOrder(line, managerName);
+                if (tempOrder == null)
+                {
+                    return;
+                }
+                BufferOrders.Enqueue(Parser.GetOrder(line, managerName));
+            }
+
+        public void AddToQueue (List<string> listOrder,string managerName )
+        {
+           foreach ( string order in listOrder   )
+           {
+               AddToQueue(order, managerName);
+           }
+
+        }
+          
 
     }
 }

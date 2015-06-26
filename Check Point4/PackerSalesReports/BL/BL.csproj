@@ -51,6 +51,7 @@
     <Compile Include="FilesInfo.cs" />
     <Compile Include="HandlerFile.cs" />
     <Compile Include="ItemOrder.cs" />
+    <Compile Include="ItemOrderModels.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

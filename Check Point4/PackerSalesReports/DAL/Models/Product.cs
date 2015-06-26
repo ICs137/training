@@ -9,7 +9,6 @@ namespace DAL
     {
         public int ProductId { get; set; }
         public string Description { get; set; }
-
         public virtual ICollection<Order> Order { get; set; }
     }
 }

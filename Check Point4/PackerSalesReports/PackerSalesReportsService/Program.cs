@@ -22,9 +22,6 @@ namespace PackerSalesReportsService
             };
             ServiceBase.Run(ServicesToRun);
 
-            BL.BufferOrders buffer = new BL.BufferOrders();
-            BL.DataCollector dataCollector = new BL.DataCollector(buffer);
-            FileSystemWatcher watcher = new FileSystemWatcher(dataCollector.DefaultFilePath, "*.csv");
 
 
 

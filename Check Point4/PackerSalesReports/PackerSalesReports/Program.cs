@@ -14,18 +14,14 @@ namespace PackerSalesReports
         static void Main(string[] args)
         {
 
-            BL.BufferOrders buffer = new BL.BufferOrders();
-            BL.DataCollector dataCollector = new BL.DataCollector(buffer);
+            BL.DataCollector dataCollector = new BL.DataCollector();
             FileSystemWatcher watcher = new FileSystemWatcher();
-            watcher.Path=dataCollector.DefaultFilePath;
+            watcher.Path = dataCollector.FilesInfo.DefaultFilePath;
             watcher.Filter = "*.csv";
             watcher.Created += new FileSystemEventHandler(dataCollector.watcher_Created);
             watcher.IncludeSubdirectories = false;
             watcher.EnableRaisingEvents = true;
-            string sdate = DateTime.Now.ToString(@" hh\.mm\.ss\_");
-            DateTime t;
-            DateTime.TryParseExact(sdate, @" hh\.mm\.ss\_", null, DateTimeStyles.None, out t);
-            Console.WriteLine(t.ToString());
+            
             Console.ReadKey();
 
         }

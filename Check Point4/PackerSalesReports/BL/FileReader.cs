@@ -9,24 +9,6 @@ namespace BL
     public class FileReader
     {
         private readonly Encoding _defaultEncoding = Encoding.GetEncoding(1251);
-        private readonly string _defaultFilePath;
-        private readonly string _defaultSaveFilePath;
-        private readonly string _fileName;
-        public string FileName
-        {
-            get { return _fileName; }
-        } 
-        public FileReader( FileSystemEventArgs args, string savePath)
-        {
-            _fileName = args.Name;
-            _defaultFilePath = args.FullPath;
-            _defaultSaveFilePath = savePath + args.Name;
-        }
-     
-        public List<string> GetContent()
-        {
-            return GetContent(_defaultFilePath, _defaultEncoding);
-        }
         public List<string> GetContent(string filePath)
         {
             return GetContent(filePath, _defaultEncoding);
@@ -50,10 +32,6 @@ namespace BL
             }
             return lines;
         }
-
-       
-
-
 
     }
 }

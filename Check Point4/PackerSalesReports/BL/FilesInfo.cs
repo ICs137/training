@@ -13,7 +13,7 @@ namespace BL
             get { return _defaultSaveFilePath; }
         }
         private readonly string _defaultFilePath;
-        public string DefaultFilePath1
+        public string DefaultFilePath
         {
             get { return _defaultFilePath; }
         }

@@ -1,45 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="BL.ItemOrder">
-    <Position X="7.25" Y="1.5" Width="1.5" />
+    <Position X="11.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CgECACAAAQAAAIAAAAAAAQAAAAAABAAAAIAAAAAAAAA=</HashCode>
       <FileName>ItemOrder.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BL.FileReader">
-    <Position X="11.5" Y="1.75" Width="1.5" />
+    <Position X="7.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAARAAAAAAAAAAAAAAAgAACAAAABAAAg=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAACAAAAAAAAA=</HashCode>
       <FileName>FileReader.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BL.DataCollector">
-    <Position X="9.5" Y="1.75" Width="1.5" />
+    <Position X="2" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAAARAAEAAgABBDAAAEABAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AIEAARAQEAAgABBDAAAEABAIAAAAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>DataCollector.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BL.Parser">
-    <Position X="5.25" Y="3.5" Width="1.5" />
+    <Position X="5.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAQgAAAAAAAAAAIQAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAQgAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Parser.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BL.HandlerFile">
-    <Position X="3" Y="2.25" Width="1.5" />
+    <Position X="3.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAEAAgABQBAAQAAAAAAAAAAAAAAAAAAABAAAI=</HashCode>
+      <HashCode>AQAgAAAAEAAAABQBAAIAQAACAAAAAAAAAAAAAABAKAA=</HashCode>
       <FileName>HandlerFile.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BL.FilesInfo">
-    <Position X="13.25" Y="2.75" Width="1.5" />
+    <Position X="13" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAABCAAAEAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAAAAAAAAAAAAABCAAAAIAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>FilesInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.ItemOrderModels">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAAACAAAAAIAAAAAAAQAAAAAABAAAAIAAAAAAAAA=</HashCode>
+      <FileName>ItemOrderModels.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
