@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BL.ItemOrder">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgECACAAAQAAAIAAAAAAAQAAAAAABAAAAIAAAAAAAAA=</HashCode>
+      <FileName>classes\ItemOrder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.FileReader">
+    <Position X="5.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAACAAAAAAAAA=</HashCode>
+      <FileName>classes\FileReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.DataCollector">
+    <Position X="2" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQEAABAAEIAgABABEBAAAIAAAACAAEAAACAAAAAAAAA=</HashCode>
+      <FileName>classes\DataCollector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.Parser">
+    <Position X="5.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQgAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>classes\Parser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.HandlerFile">
+    <Position X="3.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAgAAAAEAAAABQBAAIAQAACAAAAAAAAAAAAAABAKAA=</HashCode>
+      <FileName>classes\HandlerFile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.FilesInfo">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABCAAAAIAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>classes\FilesInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.ItemOrderModels">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAAACAAAAAIAAAAAAAQAAAAAABAAAAIAAAAAAAAA=</HashCode>
+      <FileName>classes\ItemOrderModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.SalesService">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAgAAAACAAAA=</HashCode>
+      <FileName>classes\SalesService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
