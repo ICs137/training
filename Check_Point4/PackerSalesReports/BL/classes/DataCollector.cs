@@ -104,9 +104,9 @@ namespace BL
                      itemOrderModel = CreationModel(itemOrder);
                      AddModelToDB(itemOrderModel);
                    }
-          
+         
                    TransporterIntoDB.Context.SaveChanges();
-               }
+                   }
            if (TaskCountReadFile > 0)
            {
                lock (thisLock2)

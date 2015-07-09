@@ -8,14 +8,14 @@ namespace TelephoneExchange
 {
     public class TelephoneExchange:ITelephoneExchange
     {
-        private readonly IMarketingDepartment marketingDepartment;
+        private readonly IMarketingDepartment _marketingDepartment;
         internal IMarketingDepartment MarketingDepartment
         {
-            get { return marketingDepartment; }
+            get { return _marketingDepartment; }
         } 
         public TelephoneExchange( MarketingDepartment marketingDepartment )
         {
-            this.marketingDepartment = marketingDepartment;
+            this._marketingDepartment = marketingDepartment;
         }
         private List<CallInfo> activeCalls = new List<CallInfo>();
         public List<CallInfo> ActiveCalls
@@ -91,8 +91,8 @@ namespace TelephoneExchange
               Port portInitiator =  (obj as Port);
               CallInfo thisCallInfo = new CallInfo(args) { PortInitiator = portInitiator, PortTarget = portTarget };
               CallLog.Add(thisCallInfo);
-              Contract contract=  marketingDepartment.GetContract(portInitiator);
-              marketingDepartment.AddCalls(contract, thisCallInfo);
+              Contract contract=  _marketingDepartment.GetContract(portInitiator);
+              _marketingDepartment.AddCalls(contract, thisCallInfo);
               if (portTarget == null)
               {
                   portInitiator.StopCall();
