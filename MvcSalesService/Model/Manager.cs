@@ -11,6 +11,8 @@ namespace Model
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class Manager
     {
@@ -18,7 +20,7 @@ namespace Model
         {
             this.Order = new HashSet<Order>();
         }
-    
+        
         public int ManagerId { get; set; }
         public string Name { get; set; }
     

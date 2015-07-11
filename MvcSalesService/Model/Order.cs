@@ -11,9 +11,13 @@ namespace Model
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class Order
     {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
         public System.DateTime OrderDate { get; set; }
         public decimal Sum { get; set; }

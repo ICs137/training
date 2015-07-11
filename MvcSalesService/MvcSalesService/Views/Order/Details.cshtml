@@ -5,42 +5,42 @@
 }
 
 <h2>Details</h2>
-fieldset>
-<legend>OrderSet</legend>
+
+<legend>Order</legend>
 
 <div class="display-label">
-    @Html.DisplayNameFor(model => model.OrderDate)
+    Date
 </div>
 <div class="display-field">
-    @Html.DisplayFor(model => model.OrderDate)
-</div>
-
-<div class="display-label">
-    @Html.DisplayNameFor(model => model.Sum)
-</div>
-<div class="display-field">
-    @Html.DisplayFor(model => model.Sum)
+    @Html.EditorFor(model => model.OrderDate)
 </div>
 
 <div class="display-label">
-    @Html.DisplayNameFor(model => model.Manager.Name)
+    Summa
 </div>
 <div class="display-field">
-    @Html.DisplayFor(model => model.Manager.Name)
+    @Html.EditorFor(model => model.Sum)
 </div>
 
 <div class="display-label">
-    @Html.DisplayNameFor(model => model.Product.Description)
+   Manager Name
 </div>
 <div class="display-field">
-    @Html.DisplayFor(model => model.Product.Description)
+    @Html.EditorFor(model => model.Manager.Name)
 </div>
 
 <div class="display-label">
-    @Html.DisplayNameFor(model => model.Customer.Name)
+   Product Description
 </div>
 <div class="display-field">
-    @Html.DisplayFor(model => model.Customer.Name)
+    @Html.EditorFor(model => model.Product.Description)
+</div>
+
+<div class="display-label">
+    Customer Name
+</div>
+<div class="display-field">
+   @Html.EditorFor(model => model.Customer.Name)
 </div>
 </fieldset>
 <p>

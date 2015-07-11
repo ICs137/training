@@ -7,7 +7,18 @@ namespace DAL
 {
     public class CustomerRepository:IModelRepository<Customer>
     {
-        private  Model.SaleContainer context=new Model.SaleContainer();
+        private readonly Model.SaleContainer _context;
+
+
+         public  CustomerRepository()
+        {
+           _context = new Model.SaleContainer();
+        }
+
+         public CustomerRepository(Model.SaleContainer context)
+        {
+            _context = context;
+        } 
         
         private Model.Customer ToEntity(Customer source)
         {
@@ -20,19 +31,19 @@ namespace DAL
         public void Add(Customer item) 
         {
             var e = this.ToEntity(item);
-            context.CustomerSet.Add(e);
+            _context.CustomerSet.Add(e);
         }
         public void Remove(Customer item)
         {
-            var tempCustomer = context.CustomerSet.FirstOrDefault(x => x.Name == item.Name);
+            var tempCustomer = _context.CustomerSet.FirstOrDefault(x => x.Name == item.Name);
             if (tempCustomer != null)
             {
-                context.CustomerSet.Remove(tempCustomer);
+                _context.CustomerSet.Remove(tempCustomer);
             }
         }
         public void Update(Customer item)
         {
-            var tempCustomer = context.CustomerSet.FirstOrDefault(x => x.Name == item.Name);
+            var tempCustomer = _context.CustomerSet.FirstOrDefault(x => x.Name == item.Name);
             if (tempCustomer == null)
             {
                 Add(item);
@@ -44,7 +55,7 @@ namespace DAL
             get
             {
                 List<Customer> templist = new List<Customer>();
-                foreach (var u in this.context.CustomerSet)
+                foreach (var u in this._context.CustomerSet)
                 {
                     templist.Add(ToObject(u));
                 }
@@ -53,7 +64,7 @@ namespace DAL
         }
         public void SaveChanges()
         {
-            context.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }

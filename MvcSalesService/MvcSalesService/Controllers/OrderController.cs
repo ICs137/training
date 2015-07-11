@@ -1,8 +1,10 @@
-﻿using System;
+﻿using DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DAL.classes;
 
 namespace MvcSalesService.Controllers
 {
@@ -11,50 +13,82 @@ namespace MvcSalesService.Controllers
     {
         //
         // GET: /Order/
-        DAL.OrderRepository repository= new DAL.OrderRepository();
-
-
-
-        public ActionResult Index()
+        
+        private  readonly DAL.classes.TransporterIntoDb _transporterIntoDb= new TransporterIntoDb();
+        private readonly  DAL.OrderRepository _orderRepository= new OrderRepository();
+       
+  
+        public ActionResult Index(int id=0)
         {
-            
-            return View( repository.Items);
+        
+            var list = _orderRepository.Items.Skip(id).Take(3); ;
+            ViewBag.count = 3;
+            return View(list );
+            id += 3;
         }
 
-        //
-        // GET: /Order/Details/5
-
-        public ActionResult Details(int id)
+        [HttpPost]
+        public ActionResult Index()
         {
-            return View();
+           // ViewBag.count = id + 3;
+           // var list = _orderRepository.Items.Skip(id).Take(3);
+
+           return View();
+        }
+
+
+
+        public ActionResult Details(int id = 0)
+        {
+            DAL.Order order = _orderRepository.GetItem(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            return View(order);
         }
 
         //
         // GET: /Order/Create
 
+         [HttpGet]
         public ActionResult Create()
+
         {
-            return View();
+
+             ViewBag.ManagerId = new SelectList(_transporterIntoDb.ManagerRepository.Items, "ManagerId", "Name");
+             ViewBag.ProductId = new SelectList(_transporterIntoDb.ProductRepository.Items, "ProductId","Description");
+             ViewBag.CustomerId = new SelectList(_transporterIntoDb.CustomerRepository.Items, "CustomerId","Name");
+             return View();
+           
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Order order)
+        {
+            if (ModelState.IsValid)
+           {
+                _orderRepository.Add(order);
+                _orderRepository.SaveChanges();
+                return RedirectToAction("Index");
+           }
+            ProductRepository productRepository = new ProductRepository();
+            CustomerRepository customerRepository = new CustomerRepository();
+            ManagerRepository managerRepository = new ManagerRepository();
+
+            ViewBag.ManagerId = new SelectList(_transporterIntoDb.ManagerRepository.Items, "ManagerId", "Name");
+            ViewBag.ProductId = new SelectList(_transporterIntoDb.ProductRepository.Items, "ProductId", "Description");
+            ViewBag.CustomerId = new SelectList(_transporterIntoDb.CustomerRepository.Items, "CustomerId", "Name");
+ 
+
+
+            return View( );
+        }
         //
         // POST: /Order/Create
 
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+       
         //
         // GET: /Order/Edit/5
 

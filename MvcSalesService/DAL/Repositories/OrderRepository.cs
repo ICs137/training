@@ -7,29 +7,66 @@ namespace DAL
 {
     public class OrderRepository : IModelRepository<Order>
     {
-        private Model.SaleContainer context = new Model.SaleContainer();
+        private readonly Model.SaleContainer _context;
+
+        public  OrderRepository()
+        {
+           _context = new Model.SaleContainer();
+        }
+
+        public OrderRepository(Model.SaleContainer context)
+        {
+            _context = context;
+        }
+
         private Model.Order ToEntity(Order source)
         {
-            var tempManager = context.ManagerSet.FirstOrDefault(x => x.Name == source.Manager.Name);
-            var tempCustomer = context.CustomerSet.FirstOrDefault(x => x.Name == source.Customer.Name);
-            var tempProduct = context.ProductSet.FirstOrDefault(x => x.Description == source.Product.Description);
-            if (tempManager != null && tempCustomer != null && tempProduct != null)
+            if (source.ManagerId == 0 || source.CustomerId == 0 || source.ProductId == 0)
+            {
+                var tempManager = _context.ManagerSet.FirstOrDefault(x => x.Name == source.Manager.Name);
+                var tempCustomer = _context.CustomerSet.FirstOrDefault(x => x.Name == source.Customer.Name);
+                var tempProduct = _context.ProductSet.FirstOrDefault(x => x.Description == source.Product.Description);
+                if (tempManager != null && tempCustomer != null && tempProduct != null)
                 {
-                return new Model.Order() 
+                    return new Model.Order()
                     {
                         OrderId = source.OrderId,
-                        Manager = tempManager, 
+                        Manager = tempManager,
                         Customer = tempCustomer,
                         Product = tempProduct,
                         OrderDate = source.OrderDate,
-                        Sum = source.Sum 
+                        Sum = source.Sum
                     };
-                 }
-             return null;
-                   
-             }
+                }
+                return null;
+            }
+            else
+            {
+                var tempManager = _context.ManagerSet.FirstOrDefault(x => x.ManagerId == source.ManagerId);
+                var tempCustomer = _context.CustomerSet.FirstOrDefault(x => x.CustomerId == source.CustomerId);
+                var tempProduct = _context.ProductSet.FirstOrDefault(x => x.ProductId == source.ProductId);
+                if (tempManager != null && tempCustomer != null && tempProduct != null)
+                {
+                    return new Model.Order()
+                    {
+                        OrderId = source.OrderId,
+                        Manager = tempManager,
+                        Customer = tempCustomer,
+                        Product = tempProduct,
+                        OrderDate = source.OrderDate,
+                        Sum = source.Sum
+                    };
+                }
+                return null;
+            }
+            
+        }
         public Order ToObject(Model.Order source)
         {
+            if (source == null)
+            {
+                return null;
+            }
             return new Order()
             { 
                 OrderId = source.OrderId,
@@ -47,11 +84,11 @@ namespace DAL
                 {
                     return;
                 }
-            context.OrderSet.Add(e);
+            _context.OrderSet.Add(e);
         }
         public void Remove(Order item)
         {
-            var tempOrder = context.OrderSet.FirstOrDefault
+            var tempOrder = _context.OrderSet.FirstOrDefault
                 (
                     x => x.Manager.Name==item.Manager.Name && 
                     x.OrderDate==item.OrderDate && 
@@ -61,12 +98,12 @@ namespace DAL
                 );
             if (tempOrder != null)
             {
-                context.OrderSet.Remove(tempOrder);
+                _context.OrderSet.Remove(tempOrder);
             }
         }
-        public void Update(Order item)
+        public void AddWithValidate(Order item)
         {
-            var tempOrder = context.OrderSet.FirstOrDefault
+            var tempOrder = _context.OrderSet.FirstOrDefault
                 (
                     x => x.Manager.Name == item.Manager.Name &&
                     x.OrderDate == item.OrderDate &&
@@ -79,21 +116,59 @@ namespace DAL
                 Add(item);
             }
         }
+
+        public void Update(Order item)
+        {
+            var tempOrderEntity = _context.OrderSet.FirstOrDefault(x => x.OrderId == item.OrderId);
+            if (tempOrderEntity == null)
+            {
+                return;
+            }
+            var tempOrder= ToEntity(item);
+            if (tempOrder==null)
+            {
+                return;
+            }
+            tempOrderEntity.Customer = tempOrder.Customer;
+            tempOrderEntity.Manager = tempOrder.Manager;
+            tempOrderEntity.OrderDate = tempOrder.OrderDate;
+            tempOrderEntity.Product = tempOrder.Product;
+            tempOrderEntity.Sum = tempOrder.Sum;
+
+        }
+
+        public void Remove(int id)
+        {
+            var tempOrder = _context.OrderSet.FirstOrDefault(x => x.OrderId == id);
+            if (tempOrder != null)
+            {
+                _context.OrderSet.Remove(tempOrder);
+            }
+        }
+
         public IEnumerable<Order> Items
         {
             get
             {
                 List<Order> templist = new List<Order>();
-                foreach (var u in this.context.OrderSet)
+                foreach (var u in this._context.OrderSet)
                     {
                         templist.Add (ToObject(u));
                     }
                 return templist;
             }
         }
+
+        public Order GetItem(int id)
+        {
+            Order tempOrder = ToObject(_context.OrderSet.FirstOrDefault(x => x.OrderId == id));
+            return tempOrder;
+        }
+
+
         public void SaveChanges()
         {
-            context.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }

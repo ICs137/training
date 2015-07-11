@@ -7,7 +7,21 @@ namespace DAL
 {
     public class ProductRepository:IModelRepository<Product>
     {
-        private Model.SaleContainer context = new Model.SaleContainer();
+        private readonly Model.SaleContainer _context;
+
+        public ProductRepository()
+        {
+           _context = new Model.SaleContainer();
+        }
+
+
+        public ProductRepository(Model.SaleContainer context)
+        {
+            _context = context;
+        }
+
+
+
         private Model.Product ToEntity(Product source)
         {
             return new Model.Product() { ProductId = source.ProductId, Description = source.Description };
@@ -19,19 +33,19 @@ namespace DAL
         public void Add(Product item)
         {
             var e = this.ToEntity(item);
-            context.ProductSet.Add(e);
+            _context.ProductSet.Add(e);
         }
         public void Remove(Product item)
         {
-            var tempProduct = context.ProductSet.FirstOrDefault(x => x.Description == item.Description);
+            var tempProduct = _context.ProductSet.FirstOrDefault(x => x.Description == item.Description);
             if (tempProduct != null)
             {
-                context.ProductSet.Remove(tempProduct);
+                _context.ProductSet.Remove(tempProduct);
             }
         }
         public void Update(Product item)
         {
-            var tempProduct = context.ProductSet.FirstOrDefault(x => x.Description == item.Description);
+            var tempProduct = _context.ProductSet.FirstOrDefault(x => x.Description == item.Description);
             if (tempProduct == null)
             {
                 Add(item);
@@ -43,7 +57,7 @@ namespace DAL
             get
             {
                 List<Product> templist = new List<Product>();
-                foreach (var u in this.context.ProductSet)
+                foreach (var u in this._context.ProductSet)
                 {
                     templist.Add(ToObject(u));
                 }
@@ -52,7 +66,7 @@ namespace DAL
         }
         public void SaveChanges()
         {
-            context.SaveChanges();
+            _context.SaveChanges();
         }
 
     }

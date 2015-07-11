@@ -1,5 +1,70 @@
-﻿@{
+﻿@model DAL.Order
+
+@{
     ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>OrderSet</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OrderDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OrderDate)
+            @Html.ValidationMessageFor(model => model.OrderDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sum)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Sum)
+            @Html.ValidationMessageFor(model => model.Sum)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ManagerId, "ManagerId")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ManagerId")
+            @Html.ValidationMessageFor(model => model.ManagerId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductId, "ProductId")
+        </div>
+        <div class="editor-field">
+                        @Html.DropDownList("ProductId")
+            @Html.ValidationMessageFor(model => model.ProductId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CustomerId, "Customer")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CustomerId")
+            @Html.ValidationMessageFor(model => model.CustomerId)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

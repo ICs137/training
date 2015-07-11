@@ -10,7 +10,17 @@ namespace DAL
     public class ManagerRepository:IModelRepository<Manager>
     {
 
-        private Model.SaleContainer context = new Model.SaleContainer();
+        private readonly Model.SaleContainer _context ;
+
+         public  ManagerRepository()
+        {
+           _context = new Model.SaleContainer();
+        }
+
+         public ManagerRepository(Model.SaleContainer context)
+        {
+            _context = context;
+        } 
         private  Model.Manager ToEntity(Manager source)
         {
             return new Model.Manager() { ManagerId = source.ManagerId, Name = source.Name };
@@ -22,19 +32,19 @@ namespace DAL
         public void Add(Manager item)
         {
             var e = this.ToEntity(item);
-            context.ManagerSet.Add(e);
+            _context.ManagerSet.Add(e);
         }
         public void Remove(Manager item)
         {
-            var tempManager = context.ManagerSet.FirstOrDefault(x => x.Name == item.Name);
+            var tempManager = _context.ManagerSet.FirstOrDefault(x => x.Name == item.Name);
             if (tempManager != null)       
             {
-                context.ManagerSet.Remove(tempManager);
+                _context.ManagerSet.Remove(tempManager);
             }
         }
         public void Update(Manager item)
         {
-            var tempM = context.ManagerSet.FirstOrDefault(x => x.Name == item.Name);
+            var tempM = _context.ManagerSet.FirstOrDefault(x => x.Name == item.Name);
             if (tempM == null)
             {
                 Add(item);
@@ -47,7 +57,7 @@ namespace DAL
             get
             {
                 List<Manager> templist = new List<Manager>();
-                foreach (var u in this.context.ManagerSet)
+                foreach (var u in this._context.ManagerSet)
                 {
                     templist.Add(ToObject(u));
                 }
@@ -56,7 +66,7 @@ namespace DAL
         }
         public void SaveChanges()
         {
-            context.SaveChanges();
+            _context.SaveChanges();
         }
 
     }
