@@ -1,0 +1,54 @@
+﻿@using MvcSalesService.HtmlHelpers
+@model   MvcSalesService.Models.OrderListViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @Html.ActionLink("Filters", "Filters")
+</p>
+        <table>
+
+            @foreach (var item in Model.Orders)
+    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Manager.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Customer.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
+                    </td>
+                </tr>
+
+    }
+
+
+
+        </table>
+
+
+        <div>
+            @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+        </div>
+

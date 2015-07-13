@@ -19,7 +19,12 @@ namespace MvcSalesService.Controllers
     {
         //
         // GET: /Account/Login
-
+        public ActionResult Index()
+        {
+           
+            return View();
+        }
+        
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -82,6 +87,7 @@ namespace MvcSalesService.Controllers
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
                     return RedirectToAction("Index", "Home");
+                    
                 }
                 catch (MembershipCreateUserException e)
                 {

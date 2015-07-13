@@ -1,0 +1,52 @@
+﻿@model MvcSalesService.Models.OrderListViewModel
+
+@{
+    ViewBag.Title = "Filters";
+}
+
+<h2>Filters</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>FilterModel</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FilterManagerId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("FilterManagerId", string.Empty)
+            @Html.ValidationMessageFor(model => model.FilterManagerId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FilterCustomerId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("FilterCustomerId", string.Empty)
+            @Html.ValidationMessageFor(model => model.FilterCustomerId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FilterProductId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("FilterProductId", string.Empty)
+            @Html.ValidationMessageFor(model => model.FilterProductId)
+ </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

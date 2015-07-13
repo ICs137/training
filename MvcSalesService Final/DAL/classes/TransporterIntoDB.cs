@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using System.Runtime.Remoting.Contexts;
+using Model;
 
 namespace DAL.classes
 {
@@ -29,13 +30,15 @@ namespace DAL.classes
 
        public TransporterIntoDb()
         {
-           
-           _managerRepository = new ManagerRepository();
-           _orderRepository = new OrderRepository();
-           _productRepository = new ProductRepository();
-           _customerRepository = new CustomerRepository();
+          Model.SaleContainer _context= new SaleContainer();
+          _managerRepository = new ManagerRepository(_context);
+          _orderRepository = new OrderRepository(_context);
+          _productRepository = new ProductRepository(_context);
+          _customerRepository = new CustomerRepository(_context);
            
         }
+
+
 
 
 
