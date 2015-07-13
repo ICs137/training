@@ -182,11 +182,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -316,7 +313,6 @@
     <Content Include="Views\Order\Details.cshtml" />
     <Content Include="Views\Order\Edit.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
-    <Content Include="Views\Order\Filters.cshtml" />
     <Content Include="Views\Order\FiltersView.cshtml" />
     <Content Include="Views\Order\Delete.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
@@ -325,6 +321,7 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Order\Filters.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

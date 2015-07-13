@@ -3,12 +3,12 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Threading;
 using System.Web.Mvc;
-using WebMatrix.WebData;
 using MvcSalesService.Models;
+using WebMatrix.WebData;
 
 namespace MvcSalesService.Filters
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class InitializeSimpleMembershipAttribute : ActionFilterAttribute
     {
         private static SimpleMembershipInitializer _initializer;
@@ -38,7 +38,7 @@ namespace MvcSalesService.Filters
                         }
                     }
 
-                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", true);
                 }
                 catch (Exception ex)
                 {

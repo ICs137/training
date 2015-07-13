@@ -1,36 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Model;
 
 namespace DAL
 {
     public class CustomerRepository:IModelRepository<Customer>
     {
-        private readonly Model.SaleContainer _context;
+        private readonly SaleContainer _context;
 
 
          public  CustomerRepository()
         {
-           _context = new Model.SaleContainer();
+           _context = new SaleContainer();
         }
 
-         public CustomerRepository(Model.SaleContainer context)
+         public CustomerRepository(SaleContainer context)
         {
             _context = context;
         } 
         
         private Model.Customer ToEntity(Customer source)
         {
-            return new Model.Customer() { CustomerId = source.CustomerId, Name = source.Name };
+            return new Model.Customer { CustomerId = source.CustomerId, Name = source.Name };
         }
         public static Customer ToObject(Model.Customer source)
         {
-            return new Customer() { CustomerId = source.CustomerId, Name = source.Name };
+            return new Customer { CustomerId = source.CustomerId, Name = source.Name };
         }
         public void Add(Customer item) 
         {
-            var e = this.ToEntity(item);
+            var e = ToEntity(item);
             _context.CustomerSet.Add(e);
         }
         public void Remove(Customer item)
@@ -55,7 +54,7 @@ namespace DAL
             get
             {
                 List<Customer> templist = new List<Customer>();
-                foreach (var u in this._context.CustomerSet)
+                foreach (var u in _context.CustomerSet)
                 {
                     templist.Add(ToObject(u));
                 }

@@ -1,13 +1,8 @@
-﻿using DAL;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
+using DAL;
 using DAL.classes;
-using Microsoft.Ajax.Utilities;
 using MvcSalesService.Models;
 
 namespace MvcSalesService.Controllers
@@ -18,24 +13,26 @@ namespace MvcSalesService.Controllers
         //
         // GET: /Order/
         public int pageSize = 50;
-        private  readonly DAL.classes.TransporterIntoDb _transporterIntoDb= new TransporterIntoDb();
+        private  readonly TransporterIntoDb _transporterIntoDb= new TransporterIntoDb();
 
 
         [HttpGet]
         public ActionResult Index(int page = 1)
+
         {
-           
-            IEnumerable<Order> oredrlist = _transporterIntoDb.OrderRepository.Items;
-            IEnumerable<Order> enumerable = oredrlist as IList<Order> ?? oredrlist.ToList();
-            OrderListViewModel model = new OrderListViewModel()
+            int skip = (page - 1)*pageSize;
+            int count;
+            IEnumerable<Order> oredrlist = _transporterIntoDb.OrderRepository.GetSomeOrders(skip, pageSize,out count);
+            
+            OrderListViewModel model = new OrderListViewModel
             {
-                PagingInfo = new PagingInfo()
+                PagingInfo = new PagingInfo
                 {
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
-                    TotalItems = enumerable.Count()
+                    TotalItems = count
                 },
-                 Orders = enumerable.Skip((page - 1) * pageSize).Take(pageSize)
+                Orders = oredrlist
             };
                
 
@@ -44,12 +41,9 @@ namespace MvcSalesService.Controllers
         }
      
        
-
-        
-
         public ActionResult Details(int id = 0)
         {
-            DAL.Order order = _transporterIntoDb.OrderRepository.GetItem(id);
+            Order order = _transporterIntoDb.OrderRepository.GetItem(id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -78,11 +72,9 @@ namespace MvcSalesService.Controllers
                 Session["modelPage"] = modelPage;
            return RedirectToAction("FiltersView"); 
         }
-
-       
-
-
+      
          [HttpGet]
+       
         public ActionResult Create()
 
         {
@@ -95,6 +87,7 @@ namespace MvcSalesService.Controllers
         }
 
         [HttpPost]
+       
         [ValidateAntiForgeryToken]
         public ActionResult Create(Order order)
         {
@@ -115,7 +108,7 @@ namespace MvcSalesService.Controllers
 
         public ActionResult Edit(int id)
         {
-            DAL.Order order = _transporterIntoDb.OrderRepository.GetItem(id);
+            Order order = _transporterIntoDb.OrderRepository.GetItem(id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -125,11 +118,10 @@ namespace MvcSalesService.Controllers
             ViewBag.CustomerId = new SelectList(_transporterIntoDb.CustomerRepository.Items, "CustomerId", "Name");
             return View(order);
         }
-
-        //
-        // POST: /Order/Edit/5
+     
 
         [HttpPost]
+    
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Order order)
         {
@@ -152,9 +144,10 @@ namespace MvcSalesService.Controllers
         // GET: /Order/Delete/5
 
         [HttpGet]
+       
         public ActionResult Delete(int id)
         {
-            DAL.Order order = _transporterIntoDb.OrderRepository.GetItem(id);
+            Order order = _transporterIntoDb.OrderRepository.GetItem(id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -166,6 +159,7 @@ namespace MvcSalesService.Controllers
         // POST: /Order/Delete/5
 
         [HttpPost]
+      
         public ActionResult Delete(Order order,int id)
         {
             try
@@ -176,7 +170,7 @@ namespace MvcSalesService.Controllers
             }
             catch
             {
-                DAL.Order tempOrderorder = _transporterIntoDb.OrderRepository.GetItem(id);
+                Order tempOrderorder = _transporterIntoDb.OrderRepository.GetItem(id);
                 return View(tempOrderorder);
             }
         }
@@ -188,62 +182,25 @@ namespace MvcSalesService.Controllers
             {
                 return RedirectToAction("Index");
             }
-            OrderListViewModel model;
-            IEnumerable<Order> oredrlist = _transporterIntoDb.OrderRepository.Items;
             OrderListViewModel modelPage = Session["modelPage"] as OrderListViewModel;
             if (modelPage != null)
             {
-                model = modelPage;
-
-                if (model.FilterManagerId != 0)
-                {
-
-                    Manager firstOrDefault = _transporterIntoDb.ManagerRepository.Items.FirstOrDefault(
-                        x => x.ManagerId == model.FilterManagerId);
-                    if (firstOrDefault != null)
-                    {
-                        IEnumerable<Order> temList = oredrlist.Where(x => x.Manager.Name == firstOrDefault.Name);
-                        oredrlist = temList;
-                    }
-
-                }
-
-                if (model.FilterCustomerId != 0)
-                {
-                    Customer firstOrDefault = _transporterIntoDb.CustomerRepository.Items.FirstOrDefault(
-                       x => x.CustomerId == model.FilterCustomerId);
-                    if (firstOrDefault != null)
-                    {
-                        IEnumerable<Order> temList = oredrlist.Where(x => x.Customer.Name == firstOrDefault.Name);
-                        oredrlist = temList;
-                    }
-                }
-
-                if (model.FilterProductId != 0)
-                {
-                    Product firstOrDefault = _transporterIntoDb.ProductRepository.Items.FirstOrDefault(
-                       x => x.ProductId == model.FilterProductId);
-                    if (firstOrDefault != null)
-                    {
-                        IEnumerable<Order> temList = oredrlist.Where(x => x.Product.Description == firstOrDefault.Description);
-                        oredrlist = temList;
-                    }
-                }
-
-                model.PagingInfo = new PagingInfo()
+                int skip = (page - 1)*pageSize;
+                int count;
+                DAL.classes.IFilters filters= modelPage;
+                modelPage.Orders = _transporterIntoDb.OrderRepository.GetSomeFilterOrders(skip, pageSize,
+                    filters, out count);
+                modelPage.PagingInfo = new PagingInfo()
                 {
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
-                    TotalItems = oredrlist.Count()
+                    TotalItems = count
                 };
-                model.Orders = oredrlist.Skip((page - 1) * pageSize).Take(pageSize);
+                return View(modelPage);
 
-                return View(model);
+
             }
-            else
-            {
-                return RedirectToAction("Index");
-            }
+            return RedirectToAction("Index");
         }
 
     }

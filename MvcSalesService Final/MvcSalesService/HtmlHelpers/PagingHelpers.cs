@@ -1,10 +1,7 @@
-﻿using MvcSalesService.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
+using MvcSalesService.Models;
 
 namespace MvcSalesService.HtmlHelpers
 {
@@ -28,7 +25,7 @@ namespace MvcSalesService.HtmlHelpers
                         tag.AddCssClass("btn-primary");
                     }
                     tag.AddCssClass("btn btn-default");
-                    result.Append(tag.ToString());
+                    result.Append(tag);
                 }
             }
             return MvcHtmlString.Create(result.ToString());

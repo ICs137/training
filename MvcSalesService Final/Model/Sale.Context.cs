@@ -7,12 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+
 namespace Model
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    
     public partial class SaleContainer : DbContext
     {
         public SaleContainer()

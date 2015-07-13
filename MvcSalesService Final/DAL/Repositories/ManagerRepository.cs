@@ -1,37 +1,34 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
+using Model;
 
 namespace DAL
 {
     public class ManagerRepository:IModelRepository<Manager>
     {
 
-        private readonly Model.SaleContainer _context ;
+        private readonly SaleContainer _context ;
 
          public  ManagerRepository()
         {
-           _context = new Model.SaleContainer();
+           _context = new SaleContainer();
         }
 
-         public ManagerRepository(Model.SaleContainer context)
+         public ManagerRepository(SaleContainer context)
         {
             _context = context;
         } 
         private  Model.Manager ToEntity(Manager source)
         {
-            return new Model.Manager() { ManagerId = source.ManagerId, Name = source.Name };
+            return new Model.Manager { ManagerId = source.ManagerId, Name = source.Name };
         }
         public static Manager ToObject(Model.Manager source)
         {
-            return new Manager(){ ManagerId = source.ManagerId, Name = source.Name };
+            return new Manager { ManagerId = source.ManagerId, Name = source.Name };
         }
         public void Add(Manager item)
         {
-            var e = this.ToEntity(item);
+            var e = ToEntity(item);
             _context.ManagerSet.Add(e);
         }
         public void Remove(Manager item)
@@ -57,7 +54,7 @@ namespace DAL
             get
             {
                 List<Manager> templist = new List<Manager>();
-                foreach (var u in this._context.ManagerSet)
+                foreach (var u in _context.ManagerSet)
                 {
                     templist.Add(ToObject(u));
                 }

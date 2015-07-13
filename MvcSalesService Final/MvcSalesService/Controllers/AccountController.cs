@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
-using WebMatrix.WebData;
 using MvcSalesService.Filters;
 using MvcSalesService.Models;
+using WebMatrix.WebData;
 
 namespace MvcSalesService.Controllers
 {
@@ -40,7 +39,7 @@ namespace MvcSalesService.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, model.RememberMe))
             {
                 return RedirectToLocal(returnUrl);
             }
@@ -65,7 +64,7 @@ namespace MvcSalesService.Controllers
         //
         // GET: /Account/Register
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public ActionResult Register()
         {
             return View();
@@ -75,7 +74,7 @@ namespace MvcSalesService.Controllers
         // POST: /Account/Register
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterModel model)
         {
@@ -85,7 +84,7 @@ namespace MvcSalesService.Controllers
                 try
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
+             //       WebSecurity.Login(model.UserName, model.Password);
                     return RedirectToAction("Index", "Home");
                     
                 }
@@ -130,7 +129,7 @@ namespace MvcSalesService.Controllers
 
         //
         // GET: /Account/Manage
-
+          [Authorize(Roles = "Admin")]
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -172,10 +171,7 @@ namespace MvcSalesService.Controllers
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
-                    else
-                    {
-                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                    }
+                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
                 }
             }
             else
@@ -229,7 +225,7 @@ namespace MvcSalesService.Controllers
                 return RedirectToAction("ExternalLoginFailure");
             }
 
-            if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
+            if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, false))
             {
                 return RedirectToLocal(returnUrl);
             }
@@ -240,14 +236,11 @@ namespace MvcSalesService.Controllers
                 OAuthWebSecurity.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, User.Identity.Name);
                 return RedirectToLocal(returnUrl);
             }
-            else
-            {
-                // User is new, ask for their desired membership name
-                string loginData = OAuthWebSecurity.SerializeProviderUserId(result.Provider, result.ProviderUserId);
-                ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
-                ViewBag.ReturnUrl = returnUrl;
-                return View("ExternalLoginConfirmation", new RegisterExternalLoginModel { UserName = result.UserName, ExternalLoginData = loginData });
-            }
+            // User is new, ask for their desired membership name
+            string loginData = OAuthWebSecurity.SerializeProviderUserId(result.Provider, result.ProviderUserId);
+            ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
+            ViewBag.ReturnUrl = returnUrl;
+            return View("ExternalLoginConfirmation", new RegisterExternalLoginModel { UserName = result.UserName, ExternalLoginData = loginData });
         }
 
         //
@@ -280,14 +273,11 @@ namespace MvcSalesService.Controllers
                         db.SaveChanges();
 
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
-                        OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
+                        OAuthWebSecurity.Login(provider, providerUserId, false);
 
                         return RedirectToLocal(returnUrl);
                     }
-                    else
-                    {
-                        ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
-                    }
+                    ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
                 }
             }
 
@@ -326,7 +316,7 @@ namespace MvcSalesService.Controllers
                 {
                     Provider = account.Provider,
                     ProviderDisplayName = clientData.DisplayName,
-                    ProviderUserId = account.ProviderUserId,
+                    ProviderUserId = account.ProviderUserId
                 });
             }
 
@@ -341,17 +331,14 @@ namespace MvcSalesService.Controllers
             {
                 return Redirect(returnUrl);
             }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            return RedirectToAction("Index", "Home");
         }
 
         public enum ManageMessageId
         {
             ChangePasswordSuccess,
             SetPasswordSuccess,
-            RemoveLoginSuccess,
+            RemoveLoginSuccess
         }
 
         internal class ExternalLoginResult : ActionResult

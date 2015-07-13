@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\Filters.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="interfaces\IModelRepository.cs" />
     <Compile Include="Repositories\ManagerRepository.cs" />

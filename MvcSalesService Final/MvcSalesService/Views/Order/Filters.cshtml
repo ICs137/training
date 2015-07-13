@@ -11,7 +11,7 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>FilterModel</legend>
+        <legend>OrderListViewModel</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.FilterManagerId)
@@ -35,7 +35,39 @@
         <div class="editor-field">
             @Html.DropDownList("FilterProductId", string.Empty)
             @Html.ValidationMessageFor(model => model.FilterProductId)
- </div>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FiLterPriceMin)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FiLterPriceMin)
+            @Html.ValidationMessageFor(model => model.FiLterPriceMin)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FilterPriceMax)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FilterPriceMax)
+            @Html.ValidationMessageFor(model => model.FilterPriceMax)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FilterDateMin)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FilterDateMin)
+            @Html.ValidationMessageFor(model => model.FilterDateMin)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FilterDateMax)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FilterDateMax)
+            @Html.ValidationMessageFor(model => model.FilterDateMax)
+        </div>
 
         <p>
             <input type="submit" value="Create" />

@@ -7,19 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Model
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    
     public partial class Order
     {
         [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
-        public System.DateTime OrderDate { get; set; }
+        public DateTime OrderDate { get; set; }
         public decimal Sum { get; set; }
     
         public virtual Manager Manager { get; set; }

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 using MvcSalesService.Models;
-using WebMatrix.WebData;
 
 namespace MvcSalesService.Controllers
 {

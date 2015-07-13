@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Security.Cryptography.X509Certificates;
+using DAL.classes;
+using Model;
 
 namespace DAL
 {
     public class OrderRepository : IModelRepository<Order>
     {
-        private readonly Model.SaleContainer _context;
+        private readonly SaleContainer _context;
 
         public  OrderRepository()
         {
-           _context = new Model.SaleContainer();
+           _context = new SaleContainer();
         }
 
-        public OrderRepository(Model.SaleContainer context)
+        public OrderRepository(SaleContainer context)
         {
             _context = context;
         }
@@ -28,7 +30,7 @@ namespace DAL
                 var tempProduct = _context.ProductSet.FirstOrDefault(x => x.Description == source.Product.Description);
                 if (tempManager != null && tempCustomer != null && tempProduct != null)
                 {
-                    return new Model.Order()
+                    return new Model.Order
                     {
                         OrderId = source.OrderId,
                         Manager = tempManager,
@@ -47,7 +49,7 @@ namespace DAL
                 var tempProduct = _context.ProductSet.FirstOrDefault(x => x.ProductId == source.ProductId);
                 if (tempManager != null && tempCustomer != null && tempProduct != null)
                 {
-                    return new Model.Order()
+                    return new Model.Order
                     {
                         OrderId = source.OrderId,
                         Manager = tempManager,
@@ -67,7 +69,7 @@ namespace DAL
             {
                 return null;
             }
-            return new Order()
+            return new Order
             { 
                 OrderId = source.OrderId,
                 Sum=source.Sum,
@@ -79,13 +81,14 @@ namespace DAL
         }
         public void Add(Order item)
         {
-            var e = this.ToEntity(item);
+            var e = ToEntity(item);
             if(e==null)
                 {
                     return;
                 }
             _context.OrderSet.Add(e);
         }
+
         public void Remove(Order item)
         {
             var tempOrder = _context.OrderSet.FirstOrDefault
@@ -101,6 +104,7 @@ namespace DAL
                 _context.OrderSet.Remove(tempOrder);
             }
         }
+
         public void AddWithValidate(Order item)
         {
             var tempOrder = _context.OrderSet.FirstOrDefault
@@ -151,7 +155,7 @@ namespace DAL
             get
             {
                 List<Order> templist = new List<Order>();
-                foreach (var u in this._context.OrderSet)
+                foreach (var u in _context.OrderSet)
                     {
                         templist.Add (ToObject(u));
                     }
@@ -165,6 +169,89 @@ namespace DAL
             return tempOrder;
         }
 
+        public IEnumerable<Order> GetSomeOrders(int skip, int take, out int count)
+        {
+            IQueryable<Model.Order> templist = _context.OrderSet.OrderBy(x=>x.OrderId).Skip(skip).Take(take);
+            count = _context.OrderSet.Count();
+            List<Order> tempOrderList = new List<Order>();
+            foreach (var u in templist)
+            {
+                tempOrderList.Add(ToObject(u));
+               
+            }
+             return tempOrderList;
+        }
+
+        public IEnumerable<Order> GetSomeFilterOrders(int skip, int take, IFilters filters  , out int count)
+        {
+
+            IQueryable<Model.Order> oredrlist = _context.OrderSet.OrderBy(x=>x.OrderId);
+
+            if (filters.FilterManagerId != 0)
+            {
+
+                Model.Manager firstOrDefault = _context.ManagerSet.FirstOrDefault(x => x.ManagerId == filters.FilterManagerId);
+                if (firstOrDefault != null)
+                {
+                    IQueryable<Model.Order> temList = oredrlist.Where(x => x.Manager.Name == firstOrDefault.Name);
+                    oredrlist = temList;
+                }
+
+            }
+
+            if (filters.FilterCustomerId != 0)
+            {
+                Model.Customer firstOrDefault =
+                    _context.CustomerSet.FirstOrDefault(x => x.CustomerId == filters.FilterCustomerId);
+                   
+                if (firstOrDefault != null)
+                {
+                    IQueryable<Model.Order> temList = oredrlist.Where(x => x.Customer.Name == firstOrDefault.Name);
+                    oredrlist = temList;
+                }
+            }
+
+            if (filters.FilterProductId != 0)
+            {
+                Model.Product firstOrDefault = _context.ProductSet.FirstOrDefault(x => x.ProductId == filters.FilterProductId);
+                if (firstOrDefault != null)
+                {
+                    IQueryable<Model.Order> temList = oredrlist.Where(x => x.Product.Description == firstOrDefault.Description);
+                    oredrlist = temList;
+                }
+            }
+
+            if (filters.FilterDateMin!=new DateTime())
+            {
+                IQueryable<Model.Order> temList = oredrlist.Where(x => x.OrderDate >= filters.FilterDateMin);
+                oredrlist = temList;
+                
+            }
+            if (filters.FilterDateMax != new DateTime())
+            {
+                IQueryable<Model.Order> temList = oredrlist.Where(x => x.OrderDate <= filters.FilterDateMax);
+                oredrlist = temList;
+            }
+
+
+            if (filters.FiLterPriceMin!=0)
+            {
+                IQueryable<Model.Order> temList = oredrlist.Where(x => x.Sum >= filters.FiLterPriceMin);
+                oredrlist = temList;
+            }
+            if (filters.FilterPriceMax !=0)
+            {
+                 IQueryable<Model.Order> temList = oredrlist.Where(x => x.Sum <= filters.FilterPriceMax);
+                oredrlist = temList;
+            }
+            List<Order> tempOrderList = new List<Order>();
+            foreach (var u in oredrlist.Skip(skip).Take(take))
+            {
+                tempOrderList.Add(ToObject(u));
+            }
+            count = tempOrderList.Count;
+            return tempOrderList;
+        }
 
         public void SaveChanges()
         {

@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Model;
 
 namespace DAL
 {
     public class ProductRepository:IModelRepository<Product>
     {
-        private readonly Model.SaleContainer _context;
+        private readonly SaleContainer _context;
 
         public ProductRepository()
         {
-           _context = new Model.SaleContainer();
+           _context = new SaleContainer();
         }
 
 
-        public ProductRepository(Model.SaleContainer context)
+        public ProductRepository(SaleContainer context)
         {
             _context = context;
         }
@@ -24,15 +23,15 @@ namespace DAL
 
         private Model.Product ToEntity(Product source)
         {
-            return new Model.Product() { ProductId = source.ProductId, Description = source.Description };
+            return new Model.Product { ProductId = source.ProductId, Description = source.Description };
         }
         public static Product ToObject(Model.Product source)
         {
-            return new Product() { ProductId = source.ProductId, Description = source.Description };
+            return new Product { ProductId = source.ProductId, Description = source.Description };
         }
         public void Add(Product item)
         {
-            var e = this.ToEntity(item);
+            var e = ToEntity(item);
             _context.ProductSet.Add(e);
         }
         public void Remove(Product item)
@@ -57,7 +56,7 @@ namespace DAL
             get
             {
                 List<Product> templist = new List<Product>();
-                foreach (var u in this._context.ProductSet)
+                foreach (var u in _context.ProductSet)
                 {
                     templist.Add(ToObject(u));
                 }

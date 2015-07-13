@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
 
 namespace DAL
 {
@@ -12,7 +8,7 @@ namespace DAL
         [Key]
         public int OrderId { get; set; }
         [Required]
-        public System.DateTime OrderDate { get; set; }
+        public DateTime OrderDate { get; set; }
         [Required]
         public decimal Sum { get; set; }
         [Required]

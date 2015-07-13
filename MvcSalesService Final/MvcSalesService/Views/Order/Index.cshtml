@@ -2,15 +2,17 @@
 @model   MvcSalesService.Models.OrderListViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Order List";
 }
 
 <h2>Index</h2>
 
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New Order", "Create")
+    </p>
+}
 <p>
     @Html.ActionLink("Filters", "Filters")
 </p>
@@ -35,9 +37,12 @@
                         @Html.DisplayFor(modelItem => item.Customer.Name)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
+                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new {id = item.OrderId})
+                            @Html.ActionLink("Delete", "Delete", new {id = item.OrderId})
+                        }
+                        @Html.ActionLink("Details", "Details", new { id = item.OrderId })
                     </td>
                 </tr>
 
